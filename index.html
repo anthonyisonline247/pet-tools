@@ -1,0 +1,1448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Pet Tools 2026 — Dog & Cat Age, Food, Weight, Toxic Food Checker & More</title>
+<meta name="description" content="The most complete free pet toolkit. Calculate your dog or cat's age in human years, daily calorie needs, ideal weight, check toxic foods, generate vaccine schedules, estimate annual costs, and predict puppy growth.">
+<meta name="keywords" content="dog age calculator, cat age calculator, pet food calculator, toxic food checker for dogs, pet calorie calculator, dog weight calculator, cat weight, puppy growth calculator, pet vaccine schedule, annual pet cost">
+<link rel="canonical" href="https://yourusername.github.io/pet-tools/">
+<meta property="og:title" content="Free Pet Tools 2026 — Complete Dog & Cat Toolkit">
+<meta property="og:description" content="Dog/cat age, calorie, weight, toxic food, vaccines, cost estimator & more. 100% free, vet-backed.">
+<meta property="og:type" content="website">
+
+<!-- Google AdSense — paste your code here after approval -->
+<!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXX" crossorigin="anonymous"></script> -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --orange:#f97316;--orange-light:#fff7ed;--orange-dark:#ea580c;--orange-50:#fff7ed;
+  --amber:#f59e0b;--green:#16a34a;--sky:#0ea5e9;--red:#ef4444;--purple:#8b5cf6;--rose:#f43f5e;
+  --bg:#fafaf8;--card:#fff;--border:#e5e7eb;--text:#111827;--muted:#6b7280;
+  --radius:12px;
+  --shadow:0 1px 3px 0 rgb(0 0 0/.08),0 1px 2px -1px rgb(0 0 0/.08);
+  --shadow-md:0 4px 6px -1px rgb(0 0 0/.08),0 2px 4px -2px rgb(0 0 0/.08);
+}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;font-size:15px}
+
+/* HEADER */
+header{background:#fff;border-bottom:1px solid var(--border);padding:0 1.5rem;position:sticky;top:0;z-index:100;box-shadow:var(--shadow)}
+.header-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:.75rem;height:56px}
+.logo{display:flex;align-items:center;gap:.5rem;font-weight:800;font-size:1.1rem;color:var(--orange);text-decoration:none;letter-spacing:-.01em}
+.logo-icon{font-size:1.4rem}
+.nav-links{display:flex;gap:.25rem;margin-left:auto;flex-wrap:wrap}
+.nav-link{padding:.3rem .7rem;border-radius:6px;font-size:.78rem;font-weight:600;color:var(--muted);text-decoration:none;cursor:pointer;transition:all .15s;border:none;background:none}
+.nav-link:hover,.nav-link.active{background:var(--orange-50);color:var(--orange)}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,#fff7ed 0%,#fef3c7 50%,#fdf2f8 100%);padding:3rem 1.5rem 2rem;text-align:center;border-bottom:1px solid var(--border)}
+.hero h1{font-size:clamp(1.6rem,4vw,2.6rem);font-weight:800;line-height:1.15;margin-bottom:.75rem}
+.hero h1 span{color:var(--orange)}
+.hero p{font-size:1rem;color:var(--muted);max-width:640px;margin:0 auto 1.5rem}
+.pills{display:flex;flex-wrap:wrap;gap:.4rem;justify-content:center}
+.pill{background:#fff;border:1px solid var(--border);border-radius:100px;padding:.28rem .75rem;font-size:.78rem;font-weight:600;color:var(--muted);display:flex;align-items:center;gap:.3rem}
+.pill em{color:var(--orange);font-style:normal}
+
+/* TOOL NAV */
+.tool-nav{background:#fff;border-bottom:1px solid var(--border);padding:0 1.5rem;overflow-x:auto}
+.tool-nav-inner{max-width:1100px;margin:0 auto;display:flex;gap:0}
+.tool-tab{padding:.9rem 1.1rem;border:none;background:none;font-size:.82rem;font-weight:700;color:var(--muted);cursor:pointer;border-bottom:2.5px solid transparent;transition:all .15s;white-space:nowrap;font-family:inherit}
+.tool-tab:hover{color:var(--orange)}
+.tool-tab.active{color:var(--orange);border-bottom-color:var(--orange)}
+
+/* LAYOUT */
+.main{max-width:1100px;margin:0 auto;padding:2rem 1.5rem}
+.tool-section{display:none}
+.tool-section.active{display:block;animation:fadeUp .35s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.ad-slot{background:#f9fafb;border:2px dashed var(--border);border-radius:var(--radius);padding:1.25rem;text-align:center;color:var(--muted);font-size:.82rem;margin-bottom:2rem}
+
+/* CARD */
+.card{background:#fff;border-radius:var(--radius);border:1px solid var(--border);box-shadow:var(--shadow);padding:1.5rem;margin-bottom:1.5rem}
+.card-title{font-size:.95rem;font-weight:700;margin-bottom:1.25rem;display:flex;align-items:center;gap:.5rem}
+.section-intro{color:var(--muted);font-size:.9rem;margin-bottom:1.5rem;line-height:1.7}
+
+/* FORM */
+.form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:1rem}
+.fg{display:flex;flex-direction:column;gap:.35rem}
+label{font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+input[type=number],input[type=text],select{padding:.65rem .85rem;border:1.5px solid var(--border);border-radius:8px;font-size:.93rem;font-family:inherit;color:var(--text);background:#fff;transition:border-color .15s;-webkit-appearance:none;appearance:none}
+input[type=number]:focus,input[type=text]:focus,select:focus{outline:none;border-color:var(--orange);box-shadow:0 0 0 3px rgba(249,115,22,.12)}
+.pet-toggle{display:flex;background:#f3f4f6;border-radius:8px;padding:3px;gap:3px;width:fit-content;margin-bottom:1.25rem}
+.pet-btn{padding:.4rem 1.3rem;border:none;background:transparent;border-radius:6px;font-size:.85rem;font-weight:700;cursor:pointer;color:var(--muted);transition:all .15s;font-family:inherit}
+.pet-btn.active{background:#fff;color:var(--orange);box-shadow:var(--shadow)}
+.btn-calc{width:100%;padding:.9rem;background:var(--orange);color:#fff;border:none;border-radius:10px;font-size:1rem;font-weight:800;cursor:pointer;transition:background .15s,transform .1s;margin-top:1.25rem;letter-spacing:.02em;font-family:inherit}
+.btn-calc:hover{background:var(--orange-dark)}.btn-calc:active{transform:scale(.99)}
+
+/* RESULTS */
+.results-section{display:none;animation:fadeUp .4s ease}
+.results-section.visible{display:block}
+
+/* KPI GRID */
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(185px,1fr));gap:1rem;margin-bottom:1.5rem}
+.kpi{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:1.2rem;position:relative;overflow:hidden;box-shadow:var(--shadow)}
+.kpi::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--orange)}
+.kpi.sky::before{background:var(--sky)}.kpi.green::before{background:var(--green)}.kpi.amber::before{background:var(--amber)}.kpi.red::before{background:var(--red)}.kpi.purple::before{background:var(--purple)}
+.kpi-label{font-size:.75rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.4rem}
+.kpi-val{font-size:1.75rem;font-weight:800;line-height:1.1;color:var(--text)}
+.kpi-sub{font-size:.78rem;color:var(--muted);margin-top:.25rem}
+
+/* RESULT BOX */
+.result-box{background:var(--orange-50);border:1.5px solid #fed7aa;border-radius:var(--radius);padding:1.25rem;margin-bottom:1rem}
+.result-box h3{font-size:.9rem;font-weight:700;color:var(--orange-dark);margin-bottom:.5rem}
+.result-box p{font-size:.88rem;color:#7c2d12;line-height:1.6}
+
+/* INFO TABLE */
+.info-table{width:100%;border-collapse:collapse;font-size:.85rem}
+.info-table th{background:#f9fafb;padding:.6rem .85rem;text-align:left;font-size:.75rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;border-bottom:1px solid var(--border)}
+.info-table td{padding:.65rem .85rem;border-bottom:1px solid #f3f4f6;color:var(--text)}
+.info-table tr:last-child td{border-bottom:none}
+.info-table tr:hover td{background:#fafafa}
+.badge{display:inline-flex;align-items:center;padding:.15rem .6rem;border-radius:100px;font-size:.72rem;font-weight:700;letter-spacing:.03em}
+.badge-red{background:#fef2f2;color:#dc2626}
+.badge-amber{background:#fffbeb;color:#d97706}
+.badge-green{background:#f0fdf4;color:#15803d}
+.badge-orange{background:#fff7ed;color:#c2410c}
+
+/* TOXIC SEARCH */
+.search-wrapper{position:relative;margin-bottom:1rem}
+.search-input{width:100%;padding:.75rem 1rem .75rem 2.75rem;border:1.5px solid var(--border);border-radius:10px;font-size:.95rem;font-family:inherit}
+.search-icon{position:absolute;left:.85rem;top:50%;transform:translateY(-50%);color:var(--muted);font-size:1rem;pointer-events:none}
+.toxic-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:.75rem}
+.toxic-card{background:#fff;border:1px solid var(--border);border-radius:10px;padding:1rem;display:flex;gap:.75rem;align-items:flex-start;box-shadow:var(--shadow)}
+.toxic-icon{font-size:1.5rem;flex-shrink:0;margin-top:.1rem}
+.toxic-name{font-size:.88rem;font-weight:700;color:var(--text);margin-bottom:.2rem}
+.toxic-desc{font-size:.78rem;color:var(--muted);line-height:1.5}
+.toxic-tags{display:flex;gap:.3rem;margin-top:.4rem;flex-wrap:wrap}
+.no-results{text-align:center;color:var(--muted);padding:2rem;font-size:.9rem}
+
+/* CHART */
+.chart-wrap{position:relative;height:260px;margin-bottom:1rem}
+
+/* VACCINE */
+.vax-timeline{margin-top:.5rem}
+.vax-item{display:flex;gap:1rem;padding:.85rem 0;border-bottom:1px solid #f3f4f6}
+.vax-item:last-child{border-bottom:none}
+.vax-age{font-size:.78rem;font-weight:700;color:#fff;background:var(--orange);border-radius:6px;padding:.25rem .6rem;white-space:nowrap;height:fit-content;margin-top:.1rem}
+.vax-age.booster{background:var(--amber)}
+.vax-age.adult{background:var(--green)}
+.vax-name{font-size:.88rem;font-weight:700;color:var(--text);margin-bottom:.2rem}
+.vax-note{font-size:.78rem;color:var(--muted)}
+.vax-core{color:var(--orange);font-weight:700;font-size:.75rem}
+.vax-optional{color:var(--muted);font-size:.75rem}
+
+/* COST */
+.cost-bar{background:#f3f4f6;border-radius:100px;height:8px;overflow:hidden;margin-top:.4rem}
+.cost-bar-fill{height:100%;border-radius:100px;background:var(--orange);transition:width .6s ease}
+.cost-item{margin-bottom:1rem}
+.cost-label{display:flex;justify-content:space-between;font-size:.85rem;font-weight:600;margin-bottom:.3rem}
+
+/* GROWTH */
+.growth-table{width:100%;border-collapse:collapse;font-size:.82rem}
+.growth-table th{background:#fff7ed;padding:.5rem .75rem;text-align:center;font-size:.75rem;font-weight:700;color:var(--orange-dark);border-bottom:1px solid #fed7aa}
+.growth-table td{padding:.5rem .75rem;border-bottom:1px solid #f3f4f6;text-align:center}
+.growth-table tr:last-child td{border-bottom:none;font-weight:700;color:var(--orange)}
+
+/* TWO COL */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+@media(max-width:640px){.two-col{grid-template-columns:1fr}}
+
+/* FAQ */
+.faq-item{border-bottom:1px solid var(--border);padding:.85rem 0}
+.faq-item:last-child{border-bottom:none}
+.faq-q{font-size:.9rem;font-weight:700;cursor:pointer;display:flex;justify-content:space-between;align-items:center;user-select:none}
+.faq-q:hover{color:var(--orange)}
+.faq-a{font-size:.85rem;color:var(--muted);margin-top:.6rem;line-height:1.7;display:none}
+.faq-a.open{display:block}
+.faq-arrow{font-size:.75rem;transition:transform .2s;color:var(--muted)}
+.faq-arrow.open{transform:rotate(180deg)}
+
+/* FOOTER */
+footer{background:#fff;border-top:1px solid var(--border);padding:2rem 1.5rem;text-align:center;margin-top:3rem}
+.footer-inner{max-width:1100px;margin:0 auto}
+.footer-logo{font-weight:800;font-size:1rem;color:var(--orange);margin-bottom:.5rem}
+.footer-links{display:flex;gap:1.5rem;justify-content:center;margin:.75rem 0;flex-wrap:wrap}
+.footer-links a{font-size:.82rem;color:var(--muted);text-decoration:none}
+.footer-links a:hover{color:var(--orange)}
+.footer-note{font-size:.75rem;color:var(--muted);max-width:600px;margin:0 auto}
+
+/* SECTION DESC */
+.tool-intro{background:linear-gradient(135deg,#fff7ed,#fef3c7);border:1px solid #fed7aa;border-radius:var(--radius);padding:1rem 1.25rem;margin-bottom:1.5rem;font-size:.88rem;color:#7c2d12;line-height:1.6}
+.tool-intro strong{color:var(--orange-dark)}
+
+/* BCS VISUAL */
+.bcs-grid{display:grid;grid-template-columns:repeat(9,1fr);gap:.3rem;margin:1rem 0}
+.bcs-box{background:#f3f4f6;border-radius:6px;padding:.5rem .25rem;text-align:center;font-size:.7rem;font-weight:700;color:var(--muted);border:2px solid transparent;cursor:default;transition:all .2s}
+.bcs-box.active{border-color:var(--orange);color:var(--orange);background:var(--orange-50)}
+.bcs-box.thin{background:#dbeafe;color:#1d4ed8}
+.bcs-box.ideal{background:#dcfce7;color:#15803d}
+.bcs-box.heavy{background:#fef9c3;color:#a16207}
+.bcs-box.obese{background:#fef2f2;color:#dc2626}
+.bcs-labels{display:flex;justify-content:space-between;font-size:.72rem;color:var(--muted);margin-bottom.5rem}
+
+@media(max-width:640px){
+  .nav-links{display:none}
+  .kpi-val{font-size:1.45rem}
+  .bcs-grid{grid-template-columns:repeat(5,1fr)}
+  .tool-tab{font-size:.76rem;padding:.8rem .7rem}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="#" class="logo"><span class="logo-icon">🐾</span> PetToolkit</a>
+    <nav class="nav-links">
+      <a class="nav-link" href="#age" onclick="switchTool('age');return false">Age</a>
+      <a class="nav-link" href="#food" onclick="switchTool('food');return false">Food</a>
+      <a class="nav-link" href="#weight" onclick="switchTool('weight');return false">Weight</a>
+      <a class="nav-link" href="#toxic" onclick="switchTool('toxic');return false">Toxic Foods</a>
+      <a class="nav-link" href="#vaccine" onclick="switchTool('vaccine');return false">Vaccines</a>
+      <a class="nav-link" href="#cost" onclick="switchTool('cost');return false">Cost</a>
+      <a class="nav-link" href="#growth" onclick="switchTool('growth');return false">Growth</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <h1>The Complete <span>Dog & Cat</span> Toolkit</h1>
+  <p>7 science-backed tools in one place — age conversion, calorie calculator, toxic food checker, vaccine schedules, weight assessment, cost estimator & growth predictor.</p>
+  <div class="pills">
+    <div class="pill">🐶 <em>Dog</em> &amp; 🐱 <em>Cat</em></div>
+    <div class="pill">✅ <em>100% Free</em></div>
+    <div class="pill">🔬 <em>Vet-Backed Formulas</em></div>
+    <div class="pill">📱 <em>No App Needed</em></div>
+    <div class="pill">🚫 <em>No Sign-Up</em></div>
+  </div>
+</section>
+
+<!-- TOOL TABS -->
+<nav class="tool-nav">
+  <div class="tool-nav-inner">
+    <button class="tool-tab active" onclick="switchTool('age')">🎂 Age in Human Years</button>
+    <button class="tool-tab" onclick="switchTool('food')">🍽️ Food & Calories</button>
+    <button class="tool-tab" onclick="switchTool('weight')">⚖️ Weight Assessment</button>
+    <button class="tool-tab" onclick="switchTool('toxic')">☠️ Toxic Food Checker</button>
+    <button class="tool-tab" onclick="switchTool('vaccine')">💉 Vaccine Schedule</button>
+    <button class="tool-tab" onclick="switchTool('cost')">💰 Annual Cost</button>
+    <button class="tool-tab" onclick="switchTool('growth')">📏 Growth Predictor</button>
+  </div>
+</nav>
+
+<main class="main">
+
+<!-- AD SLOT -->
+<div class="ad-slot">📢 Advertisement — <a href="#" style="color:var(--orange)">Get your ad here</a></div>
+
+<!-- ===================== AGE CALCULATOR ===================== -->
+<section id="age" class="tool-section active">
+  <div class="tool-intro">
+    <strong>How old is your pet in human years?</strong> The old "multiply by 7" rule is outdated. This tool uses size-adjusted formulas for dogs (based on peer-reviewed research) and a life-stage model for cats that's endorsed by the American Animal Hospital Association.
+  </div>
+
+  <div class="card">
+    <div class="card-title">🎂 Pet Age Calculator</div>
+    <div class="pet-toggle">
+      <button class="pet-btn active" id="age-dog-btn" onclick="setPetType('age','dog')">🐶 Dog</button>
+      <button class="pet-btn" id="age-cat-btn" onclick="setPetType('age','cat')">🐱 Cat</button>
+    </div>
+    <div class="form-grid">
+      <div class="fg">
+        <label>Pet's Age (years)</label>
+        <input type="number" id="age-years" min="0" max="30" step="0.5" placeholder="e.g. 3">
+      </div>
+      <div class="fg" id="age-size-wrap">
+        <label>Dog Size</label>
+        <select id="age-size">
+          <option value="small">Small (&lt; 20 lbs / 9 kg)</option>
+          <option value="medium" selected>Medium (21–50 lbs / 10–23 kg)</option>
+          <option value="large">Large (51–90 lbs / 23–41 kg)</option>
+          <option value="giant">Giant (&gt; 90 lbs / 41+ kg)</option>
+        </select>
+      </div>
+    </div>
+    <button class="btn-calc" onclick="calcAge()">Calculate Human Age →</button>
+  </div>
+
+  <div id="age-results" class="results-section">
+    <div class="kpi-grid">
+      <div class="kpi"><div class="kpi-label">Human Age Equivalent</div><div class="kpi-val" id="age-human">—</div><div class="kpi-sub" id="age-stage">Life stage</div></div>
+      <div class="kpi sky"><div class="kpi-label">Life Stage</div><div class="kpi-val" id="age-stage-big">—</div><div class="kpi-sub" id="age-stage-sub">—</div></div>
+      <div class="kpi amber"><div class="kpi-label">Expected Lifespan</div><div class="kpi-val" id="age-lifespan">—</div><div class="kpi-sub">years</div></div>
+      <div class="kpi green"><div class="kpi-label">% of Life Lived</div><div class="kpi-val" id="age-pct">—</div><div class="kpi-sub" id="age-pct-sub">—</div></div>
+    </div>
+    <div class="result-box" id="age-advice-box">
+      <h3 id="age-advice-title">Life Stage Tips</h3>
+      <p id="age-advice-text">—</p>
+    </div>
+    <div class="card">
+      <div class="card-title">📊 Full Age Comparison Chart</div>
+      <div class="chart-wrap"><canvas id="ageChart"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-title">📋 Pet Age Reference Table</div>
+      <div style="overflow-x:auto">
+        <table class="info-table" id="age-table">
+          <thead><tr><th>Pet Age</th><th>Human Equivalent</th><th>Life Stage</th><th>Key Focus</th></tr></thead>
+          <tbody id="age-table-body"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOD CALCULATOR ===================== -->
+<section id="food" class="tool-section">
+  <div class="tool-intro">
+    <strong>Correct portion sizes prevent obesity</strong> — the #1 preventable health condition in pets. This tool uses the RER (Resting Energy Requirement) formula recommended by veterinary nutritionists: <strong>RER = 70 × (body weight in kg)^0.75</strong>, then multiplied by a life-stage factor for the Daily Energy Requirement (DER).
+  </div>
+
+  <div class="card">
+    <div class="card-title">🍽️ Daily Food & Calorie Calculator</div>
+    <div class="pet-toggle">
+      <button class="pet-btn active" id="food-dog-btn" onclick="setPetType('food','dog')">🐶 Dog</button>
+      <button class="pet-btn" id="food-cat-btn" onclick="setPetType('food','cat')">🐱 Cat</button>
+    </div>
+    <div class="form-grid">
+      <div class="fg">
+        <label>Weight (lbs)</label>
+        <input type="number" id="food-weight" min="1" max="250" placeholder="e.g. 25">
+      </div>
+      <div class="fg">
+        <label>Age (years)</label>
+        <input type="number" id="food-age" min="0" max="25" step="0.5" placeholder="e.g. 3">
+      </div>
+      <div class="fg">
+        <label>Life Stage</label>
+        <select id="food-stage">
+          <option value="puppy">Puppy / Kitten (&lt; 1 yr)</option>
+          <option value="adult" selected>Adult (neutered)</option>
+          <option value="adult-intact">Adult (intact)</option>
+          <option value="senior">Senior</option>
+          <option value="pregnant">Pregnant</option>
+          <option value="lactating">Lactating</option>
+          <option value="obese-prone">Obese Prone</option>
+        </select>
+      </div>
+      <div class="fg">
+        <label>Activity Level</label>
+        <select id="food-activity">
+          <option value="low">Low (mostly indoors)</option>
+          <option value="moderate" selected>Moderate (daily walks)</option>
+          <option value="high">High (active/working dog)</option>
+          <option value="very-high">Very High (athlete/sled)</option>
+        </select>
+      </div>
+      <div class="fg">
+        <label>Food Calorie Density (kcal/cup)</label>
+        <input type="number" id="food-kcal-cup" min="100" max="700" placeholder="e.g. 350" value="350">
+      </div>
+    </div>
+    <button class="btn-calc" onclick="calcFood()">Calculate Daily Needs →</button>
+  </div>
+
+  <div id="food-results" class="results-section">
+    <div class="kpi-grid">
+      <div class="kpi"><div class="kpi-label">Daily Calories (DER)</div><div class="kpi-val" id="food-der">—</div><div class="kpi-sub">kcal/day</div></div>
+      <div class="kpi sky"><div class="kpi-label">Resting Calories (RER)</div><div class="kpi-val" id="food-rer">—</div><div class="kpi-sub">kcal/day</div></div>
+      <div class="kpi amber"><div class="kpi-label">Cups of Food/Day</div><div class="kpi-val" id="food-cups">—</div><div class="kpi-sub" id="food-cups-sub">based on density</div></div>
+      <div class="kpi green"><div class="kpi-label">DER Factor</div><div class="kpi-val" id="food-factor">—</div><div class="kpi-sub">activity multiplier</div></div>
+    </div>
+    <div class="result-box">
+      <h3>📋 Feeding Schedule Recommendation</h3>
+      <p id="food-schedule-text">—</p>
+    </div>
+    <div class="card">
+      <div class="card-title">📊 Calorie Breakdown</div>
+      <div class="chart-wrap" style="height:220px"><canvas id="foodChart"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-title">🔍 DER Multipliers by Life Stage</div>
+      <div style="overflow-x:auto">
+        <table class="info-table">
+          <thead><tr><th>Life Stage</th><th>DER Multiplier</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td>Puppy/Kitten (&lt;4 mo)</td><td>3.0</td><td>Rapid growth phase</td></tr>
+            <tr><td>Puppy/Kitten (4–12 mo)</td><td>2.0</td><td>Slowing growth</td></tr>
+            <tr><td>Adult (neutered)</td><td>1.6</td><td>Most common</td></tr>
+            <tr><td>Adult (intact)</td><td>1.8</td><td>Higher metabolism</td></tr>
+            <tr><td>Senior</td><td>1.4</td><td>Reduced activity</td></tr>
+            <tr><td>Obese prone</td><td>1.2–1.4</td><td>Weight management</td></tr>
+            <tr><td>Pregnant</td><td>3.0</td><td>Supports growth</td></tr>
+            <tr><td>Lactating</td><td>4.0–8.0</td><td>Depends on litter size</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== WEIGHT ASSESSMENT ===================== -->
+<section id="weight" class="tool-section">
+  <div class="tool-intro">
+    <strong>Over 50% of US pets are overweight or obese</strong> — the most common preventable disease in companion animals. Use Body Condition Score (BCS) and this calculator to assess your pet's ideal weight range.
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title">⚖️ Ideal Weight & BCS Estimator</div>
+      <div class="pet-toggle">
+        <button class="pet-btn active" id="wt-dog-btn" onclick="setPetType('wt','dog')">🐶 Dog</button>
+        <button class="pet-btn" id="wt-cat-btn" onclick="setPetType('wt','cat')">🐱 Cat</button>
+      </div>
+      <div class="form-grid">
+        <div class="fg">
+          <label>Current Weight (lbs)</label>
+          <input type="number" id="wt-current" min="1" max="300" placeholder="e.g. 35">
+        </div>
+        <div class="fg" id="wt-breed-wrap">
+          <label>Breed Size</label>
+          <select id="wt-breed">
+            <option value="toy">Toy (2–6 lbs ideal)</option>
+            <option value="small">Small (7–25 lbs ideal)</option>
+            <option value="medium" selected>Medium (26–55 lbs ideal)</option>
+            <option value="large">Large (56–90 lbs ideal)</option>
+            <option value="giant">Giant (91–175 lbs ideal)</option>
+          </select>
+        </div>
+        <div class="fg">
+          <label>Visually Assess (BCS 1–9)</label>
+          <select id="wt-bcs">
+            <option value="1">1 — Emaciated (ribs visible)</option>
+            <option value="2">2 — Very thin</option>
+            <option value="3">3 — Thin</option>
+            <option value="4">4 — Underweight</option>
+            <option value="5" selected>5 — Ideal</option>
+            <option value="6">6 — Overweight</option>
+            <option value="7">7 — Heavy</option>
+            <option value="8">8 — Obese</option>
+            <option value="9">9 — Severely obese</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn-calc" onclick="calcWeight()">Assess Weight →</button>
+    </div>
+    <div class="card">
+      <div class="card-title">📖 How to Assess BCS at Home</div>
+      <div class="section-intro">The Body Condition Score (BCS) is a 9-point scale used by vets worldwide to assess body fat.</div>
+      <table class="info-table">
+        <thead><tr><th>BCS</th><th>Description</th><th>Action</th></tr></thead>
+        <tbody>
+          <tr><td>1–2</td><td>Bones clearly visible, no fat</td><td><span class="badge badge-red">Immediate vet visit</span></td></tr>
+          <tr><td>3</td><td>Ribs easily felt, minimal fat</td><td><span class="badge badge-amber">Increase calories</span></td></tr>
+          <tr><td>4</td><td>Ribs easily felt, slight cover</td><td><span class="badge badge-amber">Monitor & feed more</span></td></tr>
+          <tr><td>5</td><td>Ribs felt, slight fat cover ✓</td><td><span class="badge badge-green">Ideal weight</span></td></tr>
+          <tr><td>6</td><td>Ribs felt with pressure</td><td><span class="badge badge-amber">Slight reduction</span></td></tr>
+          <tr><td>7</td><td>Ribs hard to feel, fat deposits</td><td><span class="badge badge-orange">Reduce calories 15%</span></td></tr>
+          <tr><td>8–9</td><td>Ribs not palpable, heavy fat</td><td><span class="badge badge-red">Vet weight plan needed</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div id="wt-results" class="results-section">
+    <div class="kpi-grid">
+      <div class="kpi"><div class="kpi-label">Current Weight</div><div class="kpi-val" id="wt-curr-kpi">—</div><div class="kpi-sub">lbs</div></div>
+      <div class="kpi green"><div class="kpi-label">Ideal Weight Range</div><div class="kpi-val" id="wt-ideal">—</div><div class="kpi-sub">lbs</div></div>
+      <div class="kpi amber"><div class="kpi-label">Difference</div><div class="kpi-val" id="wt-diff">—</div><div class="kpi-sub" id="wt-diff-sub">—</div></div>
+      <div class="kpi" id="wt-bcs-kpi"><div class="kpi-label">BCS Score</div><div class="kpi-val" id="wt-bcs-val">—</div><div class="kpi-sub" id="wt-bcs-label">—</div></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Body Condition Score Visual</div>
+      <div class="bcs-labels"><span>Underweight ←</span><span>→ Obese</span></div>
+      <div class="bcs-grid" id="bcs-visual"></div>
+    </div>
+    <div class="result-box" id="wt-advice">
+      <h3 id="wt-advice-title">Weight Recommendation</h3>
+      <p id="wt-advice-text">—</p>
+    </div>
+    <div class="card">
+      <div class="card-title">📊 Weight Loss Plan (if needed)</div>
+      <div class="chart-wrap" style="height:220px"><canvas id="weightChart"></canvas></div>
+      <p id="wt-plan-text" style="font-size:.85rem;color:var(--muted);margin-top:.75rem;line-height:1.7"></p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TOXIC FOOD CHECKER ===================== -->
+<section id="toxic" class="tool-section">
+  <div class="tool-intro">
+    <strong>Knowledge saves lives.</strong> Many common human foods are toxic to pets. This searchable database covers 40+ hazardous items. For emergencies, call <strong>ASPCA Animal Poison Control: (888) 426-4435</strong> or your vet immediately.
+  </div>
+
+  <div class="card">
+    <div class="card-title">☠️ Toxic Food Checker</div>
+    <div class="pet-toggle">
+      <button class="pet-btn active" id="tx-dog-btn" onclick="setToxicFilter('dog')">🐶 Dogs</button>
+      <button class="pet-btn" id="tx-cat-btn" onclick="setToxicFilter('cat')">🐱 Cats</button>
+      <button class="pet-btn" id="tx-both-btn" onclick="setToxicFilter('both')">🐾 Both</button>
+    </div>
+    <div class="search-wrapper">
+      <span class="search-icon">🔍</span>
+      <input type="text" class="search-input" id="toxic-search" placeholder="Search food (e.g. chocolate, grapes, onion)..." oninput="filterToxic()">
+    </div>
+    <div class="toxic-grid" id="toxic-grid"></div>
+  </div>
+
+  <div class="card" style="margin-top:1.5rem">
+    <div class="card-title">✅ Safe Foods for Pets</div>
+    <div class="two-col">
+      <div>
+        <div style="font-size:.85rem;font-weight:700;color:var(--green);margin-bottom:.75rem">🐶 Safe for Dogs</div>
+        <div style="display:flex;flex-wrap:wrap;gap:.4rem;font-size:.82rem" id="dog-safe-list"></div>
+      </div>
+      <div>
+        <div style="font-size:.85rem;font-weight:700;color:var(--green);margin-bottom:.75rem">🐱 Safe for Cats</div>
+        <div style="display:flex;flex-wrap:wrap;gap:.4rem;font-size:.82rem" id="cat-safe-list"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== VACCINE SCHEDULE ===================== -->
+<section id="vaccine" class="tool-section">
+  <div class="tool-intro">
+    <strong>Vaccines are the most cost-effective preventive care.</strong> This schedule follows AAHA (American Animal Hospital Association) and AAFP (American Association of Feline Practitioners) 2022 guidelines. Always consult your vet for personalized recommendations.
+  </div>
+
+  <div class="card">
+    <div class="card-title">💉 Personalized Vaccine Schedule</div>
+    <div class="pet-toggle">
+      <button class="pet-btn active" id="vax-dog-btn" onclick="setPetType('vax','dog')">🐶 Dog</button>
+      <button class="pet-btn" id="vax-cat-btn" onclick="setPetType('vax','cat')">🐱 Cat</button>
+    </div>
+    <div class="form-grid">
+      <div class="fg">
+        <label>Pet's Age</label>
+        <select id="vax-age">
+          <option value="6w">6–8 weeks</option>
+          <option value="10w">10–12 weeks</option>
+          <option value="14w">14–16 weeks</option>
+          <option value="adult" selected>Adult (&gt; 1 year)</option>
+          <option value="senior">Senior (&gt; 7 years)</option>
+        </select>
+      </div>
+      <div class="fg">
+        <label>Lifestyle</label>
+        <select id="vax-lifestyle">
+          <option value="indoor">Mostly Indoor</option>
+          <option value="outdoor" selected>Indoor/Outdoor Mix</option>
+          <option value="working">Working / High Exposure</option>
+        </select>
+      </div>
+    </div>
+    <button class="btn-calc" onclick="showVaccines()">Generate Schedule →</button>
+  </div>
+
+  <div id="vax-results" class="results-section">
+    <div class="two-col">
+      <div class="card">
+        <div class="card-title">📋 Core Vaccines (Required)</div>
+        <div class="vax-timeline" id="core-vax-list"></div>
+      </div>
+      <div class="card">
+        <div class="card-title">🔵 Non-Core Vaccines (Lifestyle-Based)</div>
+        <div class="vax-timeline" id="noncore-vax-list"></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">📅 Full Puppy/Kitten Vaccination Timeline</div>
+      <div class="vax-timeline" id="full-vax-timeline"></div>
+    </div>
+    <div class="result-box">
+      <h3>⚠️ Important Notes</h3>
+      <p>Core vaccines are recommended for ALL pets regardless of lifestyle. Non-core vaccines are given based on risk factors. Titer testing may replace some boosters for adult dogs. Always confirm your local rabies vaccine requirements — many states require annual or triennial rabies. Consult your veterinarian before any vaccination changes.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📋 Complete Vaccine Reference</div>
+    <div style="overflow-x:auto">
+      <table class="info-table">
+        <thead><tr><th>Vaccine</th><th>Pet</th><th>Type</th><th>Frequency</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>Rabies</td><td>Both</td><td><span class="badge badge-red">Core</span></td><td>1 yr, then 3 yr</td><td>Legally required in most areas</td></tr>
+          <tr><td>DHPP (Distemper, Hepatitis, Parvo, Parainfluenza)</td><td>Dog</td><td><span class="badge badge-red">Core</span></td><td>Every 1–3 yrs</td><td>Most important dog vaccine</td></tr>
+          <tr><td>FVRCP (Feline Viral Rhinotracheitis, Calicivirus, Panleukopenia)</td><td>Cat</td><td><span class="badge badge-red">Core</span></td><td>Every 1–3 yrs</td><td>The "cat distemper" vaccine</td></tr>
+          <tr><td>Bordetella (Kennel Cough)</td><td>Dog</td><td><span class="badge badge-amber">Non-Core</span></td><td>Annually</td><td>Required by most kennels</td></tr>
+          <tr><td>Leptospirosis</td><td>Dog</td><td><span class="badge badge-amber">Non-Core</span></td><td>Annually</td><td>Outdoor/water exposure risk</td></tr>
+          <tr><td>Lyme Disease</td><td>Dog</td><td><span class="badge badge-amber">Non-Core</span></td><td>Annually</td><td>Tick-endemic areas</td></tr>
+          <tr><td>Canine Influenza (H3N2/H3N8)</td><td>Dog</td><td><span class="badge badge-amber">Non-Core</span></td><td>Annually</td><td>Dog parks, boarding facilities</td></tr>
+          <tr><td>FeLV (Feline Leukemia Virus)</td><td>Cat</td><td><span class="badge badge-amber">Non-Core</span></td><td>Every 1–2 yrs</td><td>Outdoor cats strongly recommended</td></tr>
+          <tr><td>FIV</td><td>Cat</td><td><span class="badge badge-amber">Non-Core</span></td><td>—</td><td>Limited availability; discuss with vet</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== COST ESTIMATOR ===================== -->
+<section id="cost" class="tool-section">
+  <div class="tool-intro">
+    <strong>The average US dog owner spends $1,500–$9,900/year</strong>; cat owners $900–$4,000/year. Knowing the real cost helps you budget and ensures your pet gets the care they deserve.
+  </div>
+
+  <div class="card">
+    <div class="card-title">💰 Annual Pet Cost Estimator</div>
+    <div class="pet-toggle">
+      <button class="pet-btn active" id="cost-dog-btn" onclick="setPetType('cost','dog')">🐶 Dog</button>
+      <button class="pet-btn" id="cost-cat-btn" onclick="setPetType('cost','cat')">🐱 Cat</button>
+    </div>
+    <div class="form-grid">
+      <div class="fg">
+        <label>Size / Breed</label>
+        <select id="cost-size">
+          <option value="small">Small dog / Any cat</option>
+          <option value="medium" selected>Medium dog</option>
+          <option value="large">Large dog</option>
+          <option value="giant">Giant breed</option>
+        </select>
+      </div>
+      <div class="fg">
+        <label>Insurance?</label>
+        <select id="cost-insurance">
+          <option value="none">No insurance</option>
+          <option value="basic">Basic plan (~$30/mo)</option>
+          <option value="comprehensive" selected>Comprehensive (~$65/mo)</option>
+        </select>
+      </div>
+      <div class="fg">
+        <label>Lifestyle</label>
+        <select id="cost-lifestyle">
+          <option value="basic">Budget-conscious</option>
+          <option value="average" selected>Average</option>
+          <option value="premium">Premium care</option>
+        </select>
+      </div>
+    </div>
+    <button class="btn-calc" onclick="calcCost()">Estimate Annual Cost →</button>
+  </div>
+
+  <div id="cost-results" class="results-section">
+    <div class="kpi-grid">
+      <div class="kpi"><div class="kpi-label">Total Annual Cost</div><div class="kpi-val" id="cost-annual">—</div><div class="kpi-sub">per year</div></div>
+      <div class="kpi sky"><div class="kpi-label">Monthly Budget</div><div class="kpi-val" id="cost-monthly">—</div><div class="kpi-sub">per month</div></div>
+      <div class="kpi amber"><div class="kpi-label">Lifetime Cost (est.)</div><div class="kpi-val" id="cost-lifetime">—</div><div class="kpi-sub" id="cost-lifetime-sub">—</div></div>
+      <div class="kpi green"><div class="kpi-label">Vet Emergency Fund</div><div class="kpi-val" id="cost-emergency">—</div><div class="kpi-sub">recommended reserve</div></div>
+    </div>
+    <div class="card">
+      <div class="card-title">📊 Cost Breakdown</div>
+      <div id="cost-bars"></div>
+    </div>
+    <div class="card">
+      <div class="card-title">📊 Annual Cost Chart</div>
+      <div class="chart-wrap" style="height:240px"><canvas id="costChart"></canvas></div>
+    </div>
+    <div class="result-box">
+      <h3>💡 Money-Saving Tips</h3>
+      <p id="cost-tips">—</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== GROWTH PREDICTOR ===================== -->
+<section id="growth" class="tool-section">
+  <div class="tool-intro">
+    <strong>Curious how big your puppy will get?</strong> Growth predictions are estimates based on breed size class averages. Mixed breeds can vary. Puppies reach full size at different ages: small breeds by 9–10 months, large breeds by 12–18 months, and giant breeds up to 24 months.
+  </div>
+
+  <div class="card">
+    <div class="card-title">📏 Puppy & Kitten Growth Predictor</div>
+    <div class="pet-toggle">
+      <button class="pet-btn active" id="gr-dog-btn" onclick="setPetType('gr','dog')">🐶 Puppy</button>
+      <button class="pet-btn" id="gr-cat-btn" onclick="setPetType('gr','cat')">🐱 Kitten</button>
+    </div>
+    <div class="form-grid">
+      <div class="fg">
+        <label>Current Age (weeks)</label>
+        <input type="number" id="gr-age-weeks" min="4" max="52" placeholder="e.g. 12">
+      </div>
+      <div class="fg">
+        <label>Current Weight (lbs)</label>
+        <input type="number" id="gr-weight" min="0.5" max="150" step="0.1" placeholder="e.g. 8.5">
+      </div>
+      <div class="fg" id="gr-size-wrap">
+        <label>Expected Adult Size</label>
+        <select id="gr-size">
+          <option value="toy">Toy (&lt; 12 lbs)</option>
+          <option value="small">Small (12–25 lbs)</option>
+          <option value="medium" selected>Medium (26–55 lbs)</option>
+          <option value="large">Large (56–90 lbs)</option>
+          <option value="giant">Giant (&gt; 90 lbs)</option>
+        </select>
+      </div>
+    </div>
+    <button class="btn-calc" onclick="calcGrowth()">Predict Adult Weight →</button>
+  </div>
+
+  <div id="gr-results" class="results-section">
+    <div class="kpi-grid">
+      <div class="kpi"><div class="kpi-label">Predicted Adult Weight</div><div class="kpi-val" id="gr-adult-wt">—</div><div class="kpi-sub">lbs</div></div>
+      <div class="kpi sky"><div class="kpi-label">Weight Range</div><div class="kpi-val" id="gr-range">—</div><div class="kpi-sub">low–high estimate</div></div>
+      <div class="kpi amber"><div class="kpi-label">Full-Grown By</div><div class="kpi-val" id="gr-fullgrown">—</div><div class="kpi-sub">months of age</div></div>
+      <div class="kpi green"><div class="kpi-label">Still Growing</div><div class="kpi-val" id="gr-still-growing">—</div><div class="kpi-sub">months remaining</div></div>
+    </div>
+    <div class="card">
+      <div class="card-title">📊 Predicted Growth Curve</div>
+      <div class="chart-wrap"><canvas id="growthChart"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-title">📋 Month-by-Month Growth Table</div>
+      <div style="overflow-x:auto">
+        <table class="growth-table" id="growth-table">
+          <thead><tr><th>Age</th><th>Est. Weight (lbs)</th><th>% of Adult</th><th>Stage</th></tr></thead>
+          <tbody id="growth-table-body"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🔍 Average Adult Weights by Breed</div>
+    <div style="overflow-x:auto">
+      <table class="info-table">
+        <thead><tr><th>Breed</th><th>Type</th><th>Avg. Weight (lbs)</th><th>Adult at (months)</th></tr></thead>
+        <tbody>
+          <tr><td>Chihuahua</td><td>Toy</td><td>3–6</td><td>9</td></tr>
+          <tr><td>Yorkshire Terrier</td><td>Toy</td><td>4–7</td><td>9</td></tr>
+          <tr><td>Beagle</td><td>Small</td><td>20–30</td><td>10–11</td></tr>
+          <tr><td>French Bulldog</td><td>Small</td><td>20–28</td><td>12</td></tr>
+          <tr><td>Cocker Spaniel</td><td>Medium</td><td>20–30</td><td>11</td></tr>
+          <tr><td>Border Collie</td><td>Medium</td><td>30–55</td><td>12–15</td></tr>
+          <tr><td>Golden Retriever</td><td>Large</td><td>55–75</td><td>12–18</td></tr>
+          <tr><td>German Shepherd</td><td>Large</td><td>60–90</td><td>18</td></tr>
+          <tr><td>Labrador Retriever</td><td>Large</td><td>55–80</td><td>12–18</td></tr>
+          <tr><td>Great Dane</td><td>Giant</td><td>100–200</td><td>18–24</td></tr>
+          <tr><td>Bernese Mountain Dog</td><td>Giant</td><td>70–115</td><td>24</td></tr>
+          <tr><td>Domestic Shorthair (Cat)</td><td>Cat</td><td>8–10</td><td>12</td></tr>
+          <tr><td>Maine Coon (Cat)</td><td>Cat</td><td>10–25</td><td>18–24</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<div class="card" style="margin-top:2rem">
+  <div class="card-title">❓ Frequently Asked Questions</div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">How accurate is the dog-to-human age conversion? <span class="faq-arrow">▼</span></div>
+    <div class="faq-a">The "multiply by 7" rule is a myth. Modern research (including a 2020 Nature Aging study) found that dogs age much faster in their early years. Our tool uses size-adjusted tables validated by veterinary studies: small dogs tend to live longer than giant breeds, so the same dog age translates to different human equivalents depending on size.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">My dog accidentally ate chocolate — what should I do? <span class="faq-arrow">▼</span></div>
+    <div class="faq-a">Call your vet or ASPCA Poison Control immediately: <strong>(888) 426-4435</strong>. Dark chocolate and baking chocolate are most dangerous. Symptoms include vomiting, diarrhea, rapid breathing, muscle tremors, and seizures. Time matters — don't wait for symptoms.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">How much should I really feed my dog? <span class="faq-arrow">▼</span></div>
+    <div class="faq-a">Ignore the bag recommendations — they are often 20–30% too high (manufacturers have an incentive to sell more food). Use the RER formula this tool provides. Divide into 2 meals per day for adults, 3–4 for puppies. Adjust based on BCS every 4 weeks.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">Is my indoor cat really overweight if I can't feel its ribs? <span class="faq-arrow">▼</span></div>
+    <div class="faq-a">Yes — if you have to press firmly to feel your cat's ribs, your cat is likely at BCS 6–7 (overweight). More than 50% of US cats are overweight. Reduce calorie-dense dry food, switch to scheduled wet food meals, and add interactive play (20 min/day) to increase activity.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">Do cats and dogs need annual booster shots every year? <span class="faq-arrow">▼</span></div>
+    <div class="faq-a">Not necessarily. DHPP and FVRCP core vaccines now have 3-year efficacy for adult pets after the initial series. Rabies intervals vary by jurisdiction (1 or 3 years). Titer testing can confirm immunity for some vaccines. Bordetella and leptospirosis are typically annual. Ask your vet about a personalized protocol.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">When will my puppy stop growing? <span class="faq-arrow">▼</span></div>
+    <div class="faq-a">Small breeds are usually done by 9–10 months. Medium breeds by 12–14 months. Large breeds (Golden, Lab, GSD) continue to 12–18 months. Giant breeds (Great Dane, Mastiff) may grow until 18–24 months. Skeletal maturity often takes longer than weight stabilization.</div>
+  </div>
+</div>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">🐾 PetToolkit</div>
+    <div class="footer-links">
+      <a href="#">Age Calculator</a>
+      <a href="#">Food Calculator</a>
+      <a href="#">Toxic Food Checker</a>
+      <a href="#">Vaccine Schedule</a>
+      <a href="#">Cost Estimator</a>
+      <a href="#">Growth Predictor</a>
+    </div>
+    <p class="footer-note">For educational purposes only. Always consult a licensed veterinarian for medical advice, diagnosis, or treatment decisions. In emergencies contact ASPCA Poison Control: (888) 426-4435.</p>
+  </div>
+</footer>
+
+<script>
+/* ========================================================
+   GLOBALS
+======================================================== */
+let petTypes = { age: 'dog', food: 'dog', wt: 'dog', vax: 'dog', cost: 'dog', gr: 'dog' };
+let toxicFilter = 'dog';
+let ageChartInst, foodChartInst, weightChartInst, costChartInst, growthChartInst;
+
+function switchTool(id) {
+  document.querySelectorAll('.tool-section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tool-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  const idx = ['age','food','weight','toxic','vaccine','cost','growth'].indexOf(id);
+  document.querySelectorAll('.tool-tab')[idx].classList.add('active');
+}
+
+function setPetType(tool, type) {
+  petTypes[tool] = type;
+  const dogBtn = document.getElementById(tool + '-dog-btn');
+  const catBtn = document.getElementById(tool + '-cat-btn');
+  if (dogBtn) { dogBtn.classList.toggle('active', type === 'dog'); catBtn.classList.toggle('active', type === 'cat'); }
+  if (tool === 'age') {
+    document.getElementById('age-size-wrap').style.display = type === 'dog' ? '' : 'none';
+  }
+  if (tool === 'wt') {
+    document.getElementById('wt-breed-wrap').style.display = type === 'dog' ? '' : 'none';
+  }
+  if (tool === 'gr') {
+    document.getElementById('gr-size-wrap').style.display = type === 'dog' ? '' : 'none';
+  }
+  if (tool === 'cost') {
+    document.getElementById('cost-size').parentElement.style.display = type === 'dog' ? '' : 'none';
+  }
+  if (tool === 'vax') {
+    showVaccines();
+  }
+}
+
+/* ========================================================
+   AGE CALCULATOR
+======================================================== */
+const dogAgeTable = {
+  small: [[1,15],[2,24],[3,28],[4,32],[5,36],[6,40],[7,44],[8,48],[9,52],[10,56],[11,60],[12,64],[13,68],[14,72],[15,76],[16,80]],
+  medium:[[1,15],[2,24],[3,28],[4,32],[5,36],[6,40],[7,44],[8,48],[9,52],[10,56],[11,60],[12,64],[13,68],[14,72],[15,76],[16,80]],
+  large: [[1,15],[2,24],[3,28],[4,32],[5,36],[6,42],[7,47],[8,51],[9,56],[10,60],[11,65],[12,69],[13,74],[14,78]],
+  giant: [[1,12],[2,22],[3,31],[4,38],[5,45],[6,49],[7,56],[8,64],[9,71],[10,79]]
+};
+const catAgeTable = [[1,15],[2,24],[3,28],[4,32],[5,36],[6,40],[7,44],[8,48],[9,52],[10,56],[11,60],[12,64],[13,68],[14,72],[15,76],[16,80],[17,84],[18,88],[19,92],[20,96]];
+const dogLifespan = { small: 15, medium: 13, large: 11, giant: 9 };
+const catLifespan = 15;
+
+function interpAge(table, age) {
+  if (age <= 0) return 0;
+  const maxAge = table[table.length - 1][0];
+  if (age >= maxAge) {
+    const last = table[table.length - 1];
+    const prev = table[table.length - 2];
+    const rate = (last[1] - prev[1]) / (last[0] - prev[0]);
+    return Math.round(last[1] + rate * (age - last[0]));
+  }
+  for (let i = 0; i < table.length - 1; i++) {
+    if (age >= table[i][0] && age <= table[i+1][0]) {
+      const t = (age - table[i][0]) / (table[i+1][0] - table[i][0]);
+      return Math.round(table[i][1] + t * (table[i+1][1] - table[i][1]));
+    }
+  }
+  return table[0][1];
+}
+
+function getLifeStage(humanAge, type) {
+  if (type === 'dog' || type === 'cat') {
+    if (humanAge < 20) return ['Puppy / Kitten', 'Early development phase — crucial for socialization and training'];
+    if (humanAge < 40) return ['Young Adult', 'Peak physical condition — best time for training and activity'];
+    if (humanAge < 60) return ['Middle Age', 'Monitor weight and dental health; vet check-ups every 6 months'];
+    if (humanAge < 75) return ['Senior', 'Increased vet monitoring, joint support, cognitive health focus'];
+    return ['Geriatric', 'Comfort care priority; regular bloodwork and pain management'];
+  }
+  return ['Adult', ''];
+}
+
+function calcAge() {
+  const yrs = parseFloat(document.getElementById('age-years').value);
+  if (!yrs || yrs <= 0) { alert('Please enter a valid age.'); return; }
+  const type = petTypes.age;
+  const size = document.getElementById('age-size').value;
+  let humanAge, lifespan, table;
+  if (type === 'dog') {
+    table = dogAgeTable[size];
+    humanAge = interpAge(table, yrs);
+    lifespan = dogLifespan[size];
+  } else {
+    table = catAgeTable;
+    humanAge = interpAge(table, yrs);
+    lifespan = catLifespan;
+  }
+  const pct = Math.min(100, Math.round((yrs / lifespan) * 100));
+  const [stage, stageSub] = getLifeStage(humanAge, type);
+
+  document.getElementById('age-human').textContent = humanAge + ' yrs';
+  document.getElementById('age-stage-big').textContent = stage;
+  document.getElementById('age-stage-sub').textContent = stageSub.split('—')[0];
+  document.getElementById('age-lifespan').textContent = '~' + lifespan;
+  document.getElementById('age-pct').textContent = pct + '%';
+  document.getElementById('age-pct-sub').textContent = 'of expected lifespan';
+  document.getElementById('age-advice-title').textContent = '🐾 ' + stage + ' Care Tips';
+
+  const adviceMap = {
+    'Puppy / Kitten': 'Focus on socialization (expose to different people, sounds, environments), start basic obedience training, feed 3–4 times daily with puppy/kitten formula. Schedule initial vaccine series with your vet.',
+    'Young Adult': 'This is prime time for training and activity. Brush teeth daily, maintain healthy weight, and schedule annual wellness exams. Most pets in this stage need 30–60 min of exercise daily.',
+    'Middle Age': 'Start semi-annual vet visits. Watch for weight gain — metabolism slows. Dental cleanings become more important. Consider joint supplements for large breeds. Screen for early disease markers.',
+    'Senior': 'Increase vet visits to every 6 months. Switch to senior food formula. Provide orthopedic bedding for joints. Watch for cognitive changes (confusion, changes in sleep patterns). Blood panels to check organ function.',
+    'Geriatric': 'Focus on quality of life and comfort. Pain management is a priority. Keep routines predictable. Assist with grooming if mobility is limited. Work closely with your vet on palliative care options.'
+  };
+  document.getElementById('age-advice-text').textContent = adviceMap[stage] || '';
+
+  // Chart
+  const labels = [], petData = [], humanData = [];
+  for (let i = 1; i <= Math.min(table.length, 16); i++) {
+    labels.push(i + ' yr');
+    petData.push(i);
+    humanData.push(interpAge(table, i));
+  }
+  if (ageChartInst) ageChartInst.destroy();
+  ageChartInst = new Chart(document.getElementById('ageChart'), {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [
+        { label: 'Pet Age (years)', data: petData, borderColor: '#94a3b8', fill: false, tension: 0.4, pointRadius: 2, borderDash: [5,5] },
+        { label: 'Human Equivalent', data: humanData, borderColor: '#f97316', backgroundColor: 'rgba(249,115,22,.08)', fill: true, tension: 0.4, pointRadius: 3, borderWidth: 2.5 }
+      ]
+    },
+    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } }, scales: { y: { beginAtZero: true, title: { display: true, text: 'Years' } } } }
+  });
+
+  // Table
+  const tbody = document.getElementById('age-table-body');
+  tbody.innerHTML = '';
+  for (let r of table) {
+    const [s, ss] = getLifeStage(r[1], type);
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td>${r[0]} yr${r[0]>1?'s':''}</td><td><strong>${r[1]}</strong> human yrs</td><td>${s}</td><td>${ss.split('—')[0]}</td>`;
+    tbody.appendChild(tr);
+  }
+
+  document.getElementById('age-results').classList.add('visible');
+}
+
+/* ========================================================
+   FOOD CALCULATOR
+======================================================== */
+const derFactors = {
+  puppy: 3.0, adult: 1.6, 'adult-intact': 1.8, senior: 1.4, pregnant: 3.0, lactating: 5.0, 'obese-prone': 1.3
+};
+const activityMod = { low: -0.2, moderate: 0, high: 0.3, 'very-high': 0.6 };
+
+function calcFood() {
+  const wtLbs = parseFloat(document.getElementById('food-weight').value);
+  const stage = document.getElementById('food-stage').value;
+  const activity = document.getElementById('food-activity').value;
+  const kcalCup = parseFloat(document.getElementById('food-kcal-cup').value) || 350;
+  if (!wtLbs) { alert('Please enter your pet\'s weight.'); return; }
+  const wtKg = wtLbs / 2.205;
+  const rer = Math.round(70 * Math.pow(wtKg, 0.75));
+  const baseFactor = derFactors[stage] || 1.6;
+  const actMod = activityMod[activity] || 0;
+  const factor = Math.max(1.0, baseFactor + actMod);
+  const der = Math.round(rer * factor);
+  const cups = (der / kcalCup).toFixed(2);
+
+  document.getElementById('food-der').textContent = der.toLocaleString();
+  document.getElementById('food-rer').textContent = rer.toLocaleString();
+  document.getElementById('food-cups').textContent = cups;
+  document.getElementById('food-cups-sub').textContent = `at ${kcalCup} kcal/cup`;
+  document.getElementById('food-factor').textContent = factor.toFixed(1) + '×';
+
+  const schedules = {
+    puppy: '3–4 meals per day. Small, frequent portions support rapid growth and stable blood sugar. Transition to adult food at 12 months (small/medium breeds) or 18 months (large/giant).',
+    adult: '2 meals per day (morning and evening) works best for most adult pets. Consistent timing helps digestion and prevents begging behavior.',
+    senior: '2–3 smaller meals per day. Senior pets often have reduced appetite or dental issues; softer food or wet food mix may help. Monitor weight closely.',
+    pregnant: '2–3 meals, gradually increasing to 1.5× normal intake in the last 3 weeks of pregnancy. Puppy/kitten formula is acceptable during this period.',
+    lactating: '3–4 meals or free-choice feeding during peak lactation. A nursing mother may need 2–3× normal calories to support milk production.',
+    'obese-prone': '2 measured meals per day with no free-feeding. Use a measuring cup every time. No treats outside of measured daily allowance.'
+  };
+  document.getElementById('food-schedule-text').textContent = schedules[stage] || schedules.adult;
+
+  // Chart
+  if (foodChartInst) foodChartInst.destroy();
+  foodChartInst = new Chart(document.getElementById('foodChart'), {
+    type: 'doughnut',
+    data: {
+      labels: ['Maintenance (RER)', 'Activity & Life Stage Bonus'],
+      datasets: [{ data: [rer, der - rer], backgroundColor: ['#f97316', '#fed7aa'], borderWidth: 2 }]
+    },
+    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } } }
+  });
+  document.getElementById('food-results').classList.add('visible');
+}
+
+/* ========================================================
+   WEIGHT ASSESSMENT
+======================================================== */
+const idealRanges = {
+  dog: { toy: [2,6], small: [7,25], medium: [26,55], large: [56,90], giant: [91,175] },
+  cat: { any: [8,12] }
+};
+
+function calcWeight() {
+  const curr = parseFloat(document.getElementById('wt-current').value);
+  const bcs = parseInt(document.getElementById('wt-bcs').value);
+  const type = petTypes.wt;
+  const sizeKey = type === 'cat' ? 'any' : document.getElementById('wt-breed').value;
+  if (!curr) { alert('Please enter your pet\'s weight.'); return; }
+  const range = type === 'cat' ? idealRanges.cat.any : idealRanges.dog[sizeKey];
+  const idealMid = (range[0] + range[1]) / 2;
+  const diff = curr - idealMid;
+  const diffStr = Math.abs(diff).toFixed(1);
+  const overUnder = diff > 0 ? 'over' : diff < 0 ? 'under' : 'at';
+
+  document.getElementById('wt-curr-kpi').textContent = curr + ' lbs';
+  document.getElementById('wt-ideal').textContent = range[0] + '–' + range[1];
+  document.getElementById('wt-diff').textContent = (diff > 0 ? '+' : '') + diff.toFixed(1) + ' lbs';
+  document.getElementById('wt-diff-sub').textContent = overUnder === 'at' ? 'Ideal weight!' : diffStr + ' lbs ' + (overUnder === 'over' ? 'overweight' : 'underweight');
+  document.getElementById('wt-bcs-val').textContent = bcs + '/9';
+
+  const bcsLabels = ['','Emaciated','Very Thin','Thin','Underweight','Ideal ✓','Overweight','Heavy','Obese','Severely Obese'];
+  document.getElementById('wt-bcs-label').textContent = bcsLabels[bcs];
+  const bcsKpi = document.getElementById('wt-bcs-kpi');
+  bcsKpi.className = 'kpi';
+  if (bcs <= 3) bcsKpi.className = 'kpi sky';
+  else if (bcs === 5) bcsKpi.className = 'kpi green';
+  else if (bcs === 6 || bcs === 7) bcsKpi.className = 'kpi amber';
+  else if (bcs >= 8) bcsKpi.className = 'kpi red';
+
+  // BCS visual
+  const bcsGrid = document.getElementById('bcs-visual');
+  bcsGrid.innerHTML = '';
+  for (let i = 1; i <= 9; i++) {
+    const b = document.createElement('div');
+    b.className = 'bcs-box';
+    if (i <= 3) b.className += ' thin';
+    else if (i === 4) b.className += ' thin';
+    else if (i === 5) b.className += ' ideal';
+    else if (i <= 7) b.className += ' heavy';
+    else b.className += ' obese';
+    if (i === bcs) b.className += ' active';
+    b.textContent = i;
+    bcsGrid.appendChild(b);
+  }
+
+  // Advice
+  const advices = {
+    1: ['Seek immediate veterinary care — your pet may be severely malnourished.', 'Emaciated'],
+    2: ['Your pet needs a vet visit for a weight gain plan. Gradual increase in calories under supervision.', 'Very Thin'],
+    3: ['Slightly underweight. Increase daily calories by 15–20% using a high-quality diet. Monitor weekly.', 'Thin'],
+    4: ['Slightly under ideal. Increase portions slightly and monitor. May also indicate parasites or illness.', 'Underweight'],
+    5: ['Perfect! Your pet is at an ideal weight. Maintain current diet and exercise routine.', 'Ideal ✓'],
+    6: ['Slightly overweight. Reduce daily portions by 10–15%. Increase exercise duration by 10 min/day.', 'Overweight'],
+    7: ['Your pet is overweight. Reduce calories by 20%, switch to a weight-management food, and add 20–30 min of daily activity.', 'Heavy'],
+    8: ['Your pet is obese. Please consult your vet for a structured weight loss plan. Rapid weight loss is also dangerous.', 'Obese'],
+    9: ['Severely obese — this is a medical emergency. Please see your vet immediately for a comprehensive treatment plan.', 'Severely Obese']
+  };
+  const [adviceText, adviceTitle] = advices[bcs] || advices[5];
+  document.getElementById('wt-advice-title').textContent = '⚖️ ' + adviceTitle;
+  document.getElementById('wt-advice-text').textContent = adviceText;
+
+  // Weight chart (loss plan)
+  const weeksToLose = bcs > 5 ? Math.ceil((curr - idealMid) / 0.5 * 2) : 0;
+  const chartLabels = ['Now'], chartData = [curr];
+  if (bcs > 5) {
+    const safeRate = curr * 0.01 / 2; // 1% per 2 weeks
+    for (let w = 2; w <= Math.min(weeksToLose, 52); w += 2) {
+      chartLabels.push('Wk ' + w);
+      chartData.push(Math.max(idealMid, parseFloat((chartData[chartData.length-1] - safeRate).toFixed(1))));
+    }
+    chartLabels.push('Goal');
+    chartData.push(idealMid);
+    document.getElementById('wt-plan-text').textContent = `Target weight: ${idealMid.toFixed(1)} lbs. Safe rate: 1% body weight per 2 weeks (about ${safeRate.toFixed(2)} lbs/week). Estimated timeline: ${Math.ceil(weeksToLose/4)} months. Always consult your vet before starting a weight loss program.`;
+  } else if (bcs < 5) {
+    document.getElementById('wt-plan-text').textContent = 'Your pet is underweight. Work with your vet to develop a safe weight-gain plan. Increasing calories by 15–20% over 4–6 weeks is generally safe.';
+  } else {
+    document.getElementById('wt-plan-text').textContent = 'Your pet is at an ideal weight. Continue current diet and exercise to maintain this healthy condition.';
+  }
+
+  if (weightChartInst) weightChartInst.destroy();
+  weightChartInst = new Chart(document.getElementById('weightChart'), {
+    type: 'line',
+    data: {
+      labels: chartLabels,
+      datasets: [
+        { label: 'Projected Weight (lbs)', data: chartData, borderColor: '#f97316', backgroundColor: 'rgba(249,115,22,.08)', fill: true, tension: 0.4 },
+        { label: 'Ideal Target', data: new Array(chartLabels.length).fill(idealMid), borderColor: '#16a34a', borderDash: [5,5], fill: false, pointRadius: 0 }
+      ]
+    },
+    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } }, scales: { y: { beginAtZero: false } } }
+  });
+
+  document.getElementById('wt-results').classList.add('visible');
+}
+
+/* ========================================================
+   TOXIC FOOD DATA
+======================================================== */
+const toxicFoods = [
+  { name: 'Chocolate', icon: '🍫', severity: 'high', affects: ['dog','cat'], desc: 'Contains theobromine and caffeine. Dark and baking chocolate are most toxic. Can cause vomiting, seizures, heart arrhythmia, death.' },
+  { name: 'Xylitol (Sugar-free gum, candy)', icon: '🍬', severity: 'high', affects: ['dog'], desc: 'Causes rapid insulin release, liver failure, hypoglycemia. Found in sugar-free gum, peanut butter, candy, and many "diet" foods.' },
+  { name: 'Grapes & Raisins', icon: '🍇', severity: 'high', affects: ['dog','cat'], desc: 'Even small amounts can cause sudden kidney failure. Mechanism unknown. No safe dose.' },
+  { name: 'Onions & Garlic', icon: '🧅', severity: 'high', affects: ['dog','cat'], desc: 'Damage red blood cells causing hemolytic anemia. Cats are more sensitive. Cooked, raw, or powdered forms are all toxic.' },
+  { name: 'Macadamia Nuts', icon: '🌰', severity: 'high', affects: ['dog'], desc: 'Causes weakness, hyperthermia, vomiting, tremors. Effects appear within 12 hours. Usually resolve in 24–48 hours but vet care needed.' },
+  { name: 'Alcohol', icon: '🍺', severity: 'high', affects: ['dog','cat'], desc: 'Pets are far more sensitive to alcohol than humans. Even small amounts cause vomiting, disorientation, respiratory failure, coma.' },
+  { name: 'Caffeine (Coffee, Tea, Energy drinks)', icon: '☕', severity: 'high', affects: ['dog','cat'], desc: 'Causes restlessness, rapid breathing, heart palpitations, muscle tremors, seizures. Fatal in sufficient quantities.' },
+  { name: 'Avocado', icon: '🥑', severity: 'medium', affects: ['dog','cat'], desc: 'Persin in avocado flesh, pit, skin, and leaves causes vomiting, diarrhea. Large pits are also a choking hazard.' },
+  { name: 'Raw Yeast Dough', icon: '🍞', severity: 'high', affects: ['dog','cat'], desc: 'Expands in the stomach causing bloat. Fermentation produces alcohol leading to ethanol poisoning. Fatal without treatment.' },
+  { name: 'Nutmeg', icon: '🫙', severity: 'medium', affects: ['dog','cat'], desc: 'Contains myristicin causing disorientation, increased heart rate, seizures. Mostly a concern in large baking quantities.' },
+  { name: 'Cooked Bones', icon: '🦴', severity: 'medium', affects: ['dog','cat'], desc: 'Cooked bones splinter and can puncture the digestive tract. Raw meaty bones are generally safer but consult your vet.' },
+  { name: 'Salt & Salty Snacks', icon: '🧂', severity: 'medium', affects: ['dog','cat'], desc: 'Large amounts cause sodium ion poisoning: vomiting, diarrhea, tremors, seizures, and death in severe cases.' },
+  { name: 'Citrus Fruits', icon: '🍋', severity: 'low', affects: ['dog','cat'], desc: 'Essential oils and citric acid in stems, leaves, and peels cause irritation, vomiting, and central nervous system depression in large amounts.' },
+  { name: 'Milk & Dairy (large amounts)', icon: '🥛', severity: 'low', affects: ['dog','cat'], desc: 'Many adult pets are lactose intolerant. Can cause diarrhea and upset stomach. Small occasional amounts are usually fine.' },
+  { name: 'Raw Eggs', icon: '🥚', severity: 'low', affects: ['dog','cat'], desc: 'Risk of Salmonella and E. coli. Raw egg whites also contain avidin which blocks biotin (Vitamin B7) absorption with regular feeding.' },
+  { name: 'Apple Seeds & Fruit Pits', icon: '🍎', severity: 'medium', affects: ['dog','cat'], desc: 'Seeds and pits of apples, cherries, peaches, and plums contain cyanide compounds. The fruit flesh itself is safe for dogs.' },
+  { name: 'Chives & Leeks', icon: '🌿', severity: 'high', affects: ['dog','cat'], desc: 'Like onions and garlic, these alliums cause oxidative damage to red blood cells. Even small amounts are harmful to cats.' },
+  { name: 'Walnuts & Moldy Nuts', icon: '🥜', severity: 'high', affects: ['dog'], desc: 'Moldy walnuts contain tremorgenic mycotoxins causing seizures and tremors. Black walnuts are especially toxic to dogs.' },
+  { name: 'Hops (brewing)', icon: '🌾', severity: 'high', affects: ['dog'], desc: 'Even small amounts cause malignant hyperthermia in dogs. Temperature can rise dangerously fast. Can be fatal.' },
+  { name: 'Human Medications (ibuprofen, acetaminophen)', icon: '💊', severity: 'high', affects: ['dog','cat'], desc: 'Ibuprofen and acetaminophen (Tylenol) are extremely toxic to both dogs and cats. Never give human pain relievers to pets.' },
+  { name: 'Lilies (Easter, Tiger, Day Lily)', icon: '🌺', severity: 'high', affects: ['cat'], desc: 'Extremely toxic to cats — even small amounts cause acute kidney failure. All parts of the plant are dangerous. Dogs less severely affected.' },
+  { name: 'Cannabis / THC', icon: '🌿', severity: 'medium', affects: ['dog','cat'], desc: 'Causes disorientation, urinary incontinence, vomiting, lethargy. Rarely fatal but requires vet care for supportive treatment.' },
+  { name: 'Tomato Plant (leaves/stem)', icon: '🍅', severity: 'low', affects: ['dog','cat'], desc: 'Solanine in green parts causes GI upset, lethargy, weakness. Ripe tomato fruit in small amounts is generally safe for dogs.' },
+  { name: 'Mushrooms (wild)', icon: '🍄', severity: 'high', affects: ['dog','cat'], desc: 'Some wild mushrooms are lethal (Amanita species cause liver failure). When in doubt, treat all wild mushroom exposure as an emergency.' },
+];
+
+const safeDogFoods = ['Blueberries','Watermelon (seedless)','Carrots','Apples (no seeds)','Pumpkin','Green beans','Broccoli (small amounts)','Sweet potato (cooked)','Salmon (cooked)','Chicken (cooked)','Rice (cooked)','Peanut butter (no xylitol)','Bananas','Cucumber','Peas'];
+const safeCatFoods = ['Cooked chicken','Cooked salmon','Cooked turkey','Cooked shrimp','Blueberries','Cantaloupe','Pumpkin','Cooked eggs','Cooked rice','Cucumber','Zucchini (cooked)','Green beans (cooked)','Peas','Watermelon (seedless)'];
+
+function renderToxic() {
+  const q = document.getElementById('toxic-search').value.toLowerCase();
+  const grid = document.getElementById('toxic-grid');
+  grid.innerHTML = '';
+  const filtered = toxicFoods.filter(f => {
+    const matchType = toxicFilter === 'both' ? true : f.affects.includes(toxicFilter);
+    const matchQ = !q || f.name.toLowerCase().includes(q) || f.desc.toLowerCase().includes(q);
+    return matchType && matchQ;
+  });
+  if (!filtered.length) {
+    grid.innerHTML = '<div class="no-results">No results found. Try a different search term.</div>';
+    return;
+  }
+  filtered.forEach(f => {
+    const sevBadge = f.severity === 'high' ? 'badge-red' : f.severity === 'medium' ? 'badge-amber' : 'badge-orange';
+    const sevText = f.severity === 'high' ? '⚠️ HIGH' : f.severity === 'medium' ? '⚡ MEDIUM' : '• LOW';
+    const tagHtml = f.affects.map(a => `<span class="badge ${a==='dog'?'badge-amber':'badge-orange'}">${a==='dog'?'🐶 Dog':'🐱 Cat'}</span>`).join('');
+    const div = document.createElement('div');
+    div.className = 'toxic-card';
+    div.innerHTML = `<div class="toxic-icon">${f.icon}</div><div><div class="toxic-name">${f.name}</div><div class="toxic-desc">${f.desc}</div><div class="toxic-tags">${tagHtml}<span class="badge ${sevBadge}">${sevText}</span></div></div>`;
+    grid.appendChild(div);
+  });
+}
+
+function filterToxic() { renderToxic(); }
+function setToxicFilter(t) {
+  toxicFilter = t;
+  ['dog','cat','both'].forEach(id => {
+    document.getElementById('tx-' + id + '-btn').classList.toggle('active', toxicFilter === id);
+  });
+  renderToxic();
+}
+
+function renderSafeFoods() {
+  ['dog','cat'].forEach(type => {
+    const list = type === 'dog' ? safeDogFoods : safeCatFoods;
+    const el = document.getElementById(type + '-safe-list');
+    el.innerHTML = list.map(f => `<span class="badge badge-green">✓ ${f}</span>`).join(' ');
+  });
+}
+
+/* ========================================================
+   VACCINE SCHEDULE
+======================================================== */
+const vaxData = {
+  dog: {
+    core: [
+      { name: 'DHPP (Distemper, Hepatitis, Parvovirus, Parainfluenza)', freq: 'Puppy series, then every 1–3 years', note: 'Most critical vaccine for dogs. Puppy series requires 3–4 doses.' },
+      { name: 'Rabies', freq: '1-year vaccine first, then 3-year', note: 'Legally required in most US states and countries.' }
+    ],
+    noncore: {
+      indoor: [],
+      outdoor: [
+        { name: 'Bordetella (Kennel Cough)', freq: 'Annually (intranasal or injectable)', note: 'Required by most boarding kennels, groomers, and doggy daycares.' },
+        { name: 'Leptospirosis', freq: 'Annually', note: 'Recommended for dogs with outdoor/water/wildlife exposure.' }
+      ],
+      working: [
+        { name: 'Bordetella (Kennel Cough)', freq: 'Every 6 months or annually', note: 'High exposure risk in working dogs.' },
+        { name: 'Leptospirosis', freq: 'Annually', note: 'Water, soil, and wildlife exposure risk.' },
+        { name: 'Lyme Disease', freq: 'Annually', note: 'Tick-endemic areas only.' },
+        { name: 'Canine Influenza (H3N2/H3N8)', freq: 'Annually', note: 'For dogs frequently in group settings.' }
+      ]
+    },
+    timeline: [
+      { age: '6–8 weeks', label: 'First Visit', core: 'DHPP (1st dose)', optional: 'Bordetella (optional)' },
+      { age: '10–12 weeks', label: 'Booster', core: 'DHPP (2nd dose)', optional: 'Leptospirosis (1st dose, optional)' },
+      { age: '14–16 weeks', label: 'Final Puppy', core: 'DHPP (3rd dose) + Rabies', optional: 'Leptospirosis (2nd dose), Lyme, Influenza' },
+      { age: '12–16 months', label: '1-Year Boosters', core: 'DHPP booster + Rabies 1-yr', optional: 'Annual non-core vaccines' },
+      { age: 'Every 1–3 years', label: 'Adult Schedule', core: 'DHPP (3-yr) + Rabies (3-yr)', optional: 'Annual non-core as needed' }
+    ]
+  },
+  cat: {
+    core: [
+      { name: 'FVRCP (Feline Viral Rhinotracheitis, Calicivirus, Panleukopenia)', freq: 'Kitten series, then every 1–3 years', note: 'Called the "cat distemper" vaccine. Essential for all cats.' },
+      { name: 'Rabies', freq: '1-year vaccine first, then 3-year', note: 'Legally required in most jurisdictions. Indoor cats should still be vaccinated.' }
+    ],
+    noncore: {
+      indoor: [],
+      outdoor: [
+        { name: 'FeLV (Feline Leukemia Virus)', freq: 'Annually for outdoor/at-risk cats', note: 'Highly recommended for outdoor cats or those with exposure to unknown cats.' }
+      ],
+      working: [
+        { name: 'FeLV (Feline Leukemia Virus)', freq: 'Annually', note: 'Strong recommendation for cats with outdoor exposure.' },
+        { name: 'FIV', freq: 'Discuss with vet', note: 'Limited availability; vaccination may complicate future FIV testing.' },
+        { name: 'Chlamydophila felis', freq: 'Annual', note: 'Multi-cat households with respiratory disease history.' }
+      ]
+    },
+    timeline: [
+      { age: '6–8 weeks', label: 'First Visit', core: 'FVRCP (1st dose)', optional: 'FeLV (1st dose, if outdoor)' },
+      { age: '10–12 weeks', label: 'Booster', core: 'FVRCP (2nd dose)', optional: 'FeLV (2nd dose, if outdoor)' },
+      { age: '14–16 weeks', label: 'Final Kitten', core: 'FVRCP (3rd dose) + Rabies', optional: 'FeLV booster if outdoor' },
+      { age: '12–16 months', label: '1-Year Boosters', core: 'FVRCP booster + Rabies 1-yr', optional: 'FeLV annual if outdoor' },
+      { age: 'Every 1–3 years', label: 'Adult Schedule', core: 'FVRCP (3-yr) + Rabies (3-yr)', optional: 'FeLV annually for outdoor cats' }
+    ]
+  }
+};
+
+function showVaccines() {
+  const type = petTypes.vax;
+  const lifestyle = document.getElementById('vax-lifestyle').value;
+  const data = vaxData[type];
+  const ageKey = document.getElementById('vax-age').value;
+
+  const coreList = document.getElementById('core-vax-list');
+  coreList.innerHTML = '';
+  data.core.forEach(v => {
+    const d = document.createElement('div');
+    d.className = 'vax-item';
+    d.innerHTML = `<span class="vax-age adult">Core</span><div><div class="vax-name">${v.name}</div><div class="vax-note"><em class="vax-core">Frequency:</em> ${v.freq}</div><div class="vax-note">${v.note}</div></div>`;
+    coreList.appendChild(d);
+  });
+
+  const noncore = data.noncore[lifestyle] || data.noncore.outdoor;
+  const noncoreList = document.getElementById('noncore-vax-list');
+  noncoreList.innerHTML = '';
+  if (!noncore.length) {
+    noncoreList.innerHTML = '<div style="font-size:.85rem;color:var(--muted);padding:.5rem">No additional non-core vaccines typically recommended for indoor-only pets. Consult your vet for individual risk assessment.</div>';
+  } else {
+    noncore.forEach(v => {
+      const d = document.createElement('div');
+      d.className = 'vax-item';
+      d.innerHTML = `<span class="vax-age booster">Non-Core</span><div><div class="vax-name">${v.name}</div><div class="vax-note"><em class="vax-core">Frequency:</em> ${v.freq}</div><div class="vax-note">${v.note}</div></div>`;
+      noncoreList.appendChild(d);
+    });
+  }
+
+  const ageClasses = ['6w','10w','14w','adult','senior'];
+  const ageIdx = ageClasses.indexOf(ageKey);
+  const timeline = document.getElementById('full-vax-timeline');
+  timeline.innerHTML = '';
+  data.timeline.forEach((t, i) => {
+    const d = document.createElement('div');
+    d.className = 'vax-item';
+    const isCurrentAge = i === ageIdx;
+    const ageClass = i < 3 ? '' : (i === 3 ? 'booster' : 'adult');
+    d.innerHTML = `<span class="vax-age ${ageClass}" style="${isCurrentAge?'ring:2px solid #f97316;outline:2px solid #f97316;':''}background:${isCurrentAge?'#f97316':''}"> ${isCurrentAge?'➤ ':''}${t.age}</span><div><div class="vax-name">${t.label}</div><div class="vax-note"><strong>Core:</strong> ${t.core}</div><div class="vax-note"><em class="vax-optional">Optional:</em> ${t.optional}</div></div>`;
+    timeline.appendChild(d);
+  });
+
+  document.getElementById('vax-results').classList.add('visible');
+}
+
+/* ========================================================
+   COST ESTIMATOR
+======================================================== */
+const costData = {
+  dog: {
+    small: { food: [400,700,1200], vet: [300,600,1000], grooming: [150,350,700], supplies: [100,200,400], treats: [50,120,250] },
+    medium: { food: [600,1000,1800], vet: [300,700,1200], grooming: [100,250,600], supplies: [120,250,450], treats: [60,150,300] },
+    large: { food: [900,1500,2500], vet: [400,800,1400], grooming: [100,300,700], supplies: [150,300,500], treats: [80,180,350] },
+    giant: { food: [1400,2200,3500], vet: [500,1000,1800], grooming: [150,400,900], supplies: [200,400,700], treats: [100,250,450] }
+  },
+  cat: {
+    any: { food: [200,400,800], vet: [200,400,800], grooming: [0,100,400], supplies: [80,150,300], treats: [30,80,180] }
+  }
+};
+const insuranceCost = { none: 0, basic: 360, comprehensive: 780 };
+const lifespanForCost = { small: 14, medium: 12, large: 11, giant: 9 };
+
+function calcCost() {
+  const type = petTypes.cost;
+  const size = type === 'cat' ? 'any' : document.getElementById('cost-size').value;
+  const insurance = document.getElementById('cost-insurance').value;
+  const lifestyle = ['basic','average','premium'].indexOf(document.getElementById('cost-lifestyle').value);
+  const cats = costData.cat.any;
+  const data = type === 'dog' ? costData.dog[size] : cats;
+  const insAmt = insuranceCost[insurance];
+  const categories = ['food','vet','grooming','supplies','treats'];
+  const catLabels = ['🍽️ Food','🏥 Veterinary','✂️ Grooming','🧸 Supplies & Toys','🦴 Treats'];
+  const amounts = categories.map(c => data[c][lifestyle]);
+  const subtotal = amounts.reduce((a,b) => a+b, 0);
+  const total = subtotal + insAmt;
+  const monthly = Math.round(total / 12);
+  const lifespan = type === 'cat' ? 14 : lifespanForCost[size] || 12;
+  const lifetime = total * lifespan;
+  const emergency = Math.round(total * 0.3);
+
+  document.getElementById('cost-annual').textContent = '$' + total.toLocaleString();
+  document.getElementById('cost-monthly').textContent = '$' + monthly.toLocaleString();
+  document.getElementById('cost-lifetime').textContent = '$' + lifetime.toLocaleString();
+  document.getElementById('cost-lifetime-sub').textContent = 'over ~' + lifespan + ' year lifespan';
+  document.getElementById('cost-emergency').textContent = '$' + emergency.toLocaleString();
+
+  // Bars
+  const barsEl = document.getElementById('cost-bars');
+  barsEl.innerHTML = '';
+  const maxAmt = Math.max(...amounts, insAmt);
+  const allCats = [...categories.map((c,i) => ({ label: catLabels[i], val: amounts[i] }))];
+  if (insAmt > 0) allCats.push({ label: '🛡️ Pet Insurance', val: insAmt });
+  allCats.forEach(({ label, val }) => {
+    const pct = Math.round((val / (total || 1)) * 100);
+    barsEl.innerHTML += `<div class="cost-item"><div class="cost-label"><span>${label}</span><span>$${val.toLocaleString()} (${pct}%)</span></div><div class="cost-bar"><div class="cost-bar-fill" style="width:${Math.round(val/(maxAmt||1)*100)}%"></div></div></div>`;
+  });
+
+  // Chart
+  if (costChartInst) costChartInst.destroy();
+  const chartLabels2 = [...catLabels];
+  const chartData2 = [...amounts];
+  if (insAmt) { chartLabels2.push('🛡️ Insurance'); chartData2.push(insAmt); }
+  costChartInst = new Chart(document.getElementById('costChart'), {
+    type: 'bar',
+    data: {
+      labels: chartLabels2,
+      datasets: [{ label: 'Annual Cost ($)', data: chartData2, backgroundColor: ['#f97316','#f59e0b','#0ea5e9','#8b5cf6','#16a34a','#f43f5e'], borderRadius: 6 }]
+    },
+    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { ticks: { callback: v => '$' + v.toLocaleString() } } } }
+  });
+
+  const tips = insurance === 'none'
+    ? 'No insurance — build an emergency fund of $2,000–$5,000. A single emergency surgery can cost $3,000–$8,000. Consider a pet-specific savings account. Buy preventive care (dental, vaccines) to avoid costly treatments later.'
+    : 'Good call on insurance! Review your deductible and annual limit annually. Ask your vet about wellness plans for routine care discounts. Buy food in bulk from warehouse stores to save 20–30%.';
+  document.getElementById('cost-tips').textContent = tips;
+  document.getElementById('cost-results').classList.add('visible');
+}
+
+/* ========================================================
+   GROWTH PREDICTOR
+======================================================== */
+const growthProfiles = {
+  toy:    { fullWeeks: 40,  adultMult: { 8: 2.5, 12: 2.0, 16: 1.7 }, adultRange: [2, 12] },
+  small:  { fullWeeks: 44,  adultMult: { 8: 3.5, 12: 2.7, 16: 2.1 }, adultRange: [12, 25] },
+  medium: { fullWeeks: 56,  adultMult: { 8: 4.5, 12: 3.4, 16: 2.5 }, adultRange: [26, 55] },
+  large:  { fullWeeks: 72,  adultMult: { 8: 5.5, 12: 4.0, 16: 3.0 }, adultRange: [56, 90] },
+  giant:  { fullWeeks: 96,  adultMult: { 8: 7.0, 12: 5.0, 16: 3.5 }, adultRange: [91, 175] },
+  cat:    { fullWeeks: 52,  adultMult: { 8: 3.3, 12: 2.5, 16: 2.0 }, adultRange: [7, 12] }
+};
+
+function estimateAdultWeight(currentWt, currentWeeks, profile) {
+  const mults = profile.adultMult;
+  const keys = Object.keys(mults).map(Number).sort((a,b) => a-b);
+  if (currentWeeks <= keys[0]) return currentWt * mults[keys[0]];
+  if (currentWeeks >= profile.fullWeeks) return currentWt;
+  for (let i = 0; i < keys.length - 1; i++) {
+    if (currentWeeks >= keys[i] && currentWeeks <= keys[i+1]) {
+      const t = (currentWeeks - keys[i]) / (keys[i+1] - keys[i]);
+      const m = mults[keys[i]] + t * (mults[keys[i+1]] - mults[keys[i]]);
+      return currentWt * m;
+    }
+  }
+  // Interpolate to 1.0 at fullWeeks
+  const lastKey = keys[keys.length - 1];
+  const lastMult = mults[lastKey];
+  const t = (currentWeeks - lastKey) / (profile.fullWeeks - lastKey);
+  const m = lastMult + t * (1.0 - lastMult);
+  return currentWt * m;
+}
+
+function calcGrowth() {
+  const ageWeeks = parseFloat(document.getElementById('gr-age-weeks').value);
+  const wt = parseFloat(document.getElementById('gr-weight').value);
+  const type = petTypes.gr;
+  const sizeKey = type === 'cat' ? 'cat' : document.getElementById('gr-size').value;
+  if (!ageWeeks || !wt) { alert('Please fill in age and weight.'); return; }
+  const profile = growthProfiles[sizeKey];
+  const adultWt = estimateAdultWeight(wt, ageWeeks, profile);
+  const lo = Math.max(profile.adultRange[0], adultWt * 0.85).toFixed(1);
+  const hi = Math.min(profile.adultRange[1], adultWt * 1.15).toFixed(1);
+  const fullMonths = Math.round(profile.fullWeeks / 4.33);
+  const currMonths = ageWeeks / 4.33;
+  const remaining = Math.max(0, fullMonths - currMonths).toFixed(1);
+
+  document.getElementById('gr-adult-wt').textContent = adultWt.toFixed(1) + ' lbs';
+  document.getElementById('gr-range').textContent = lo + '–' + hi;
+  document.getElementById('gr-fullgrown').textContent = '~' + fullMonths;
+  document.getElementById('gr-still-growing').textContent = remaining > 0 ? remaining : '✓ Done';
+
+  // Growth curve
+  const labels2 = [], data2 = [];
+  for (let w = 4; w <= profile.fullWeeks + 8; w += 4) {
+    labels2.push(Math.round(w/4.33) + ' mo');
+    const estWt = w <= ageWeeks ? (wt * (w / ageWeeks) * 0.8) : estimateAdultWeight(wt, Math.min(w, ageWeeks), profile) * (w >= profile.fullWeeks ? 1 : (w / profile.fullWeeks + 0.5 * (1 - w / profile.fullWeeks)));
+    data2.push(Math.min(adultWt, Math.max(wt * 0.5, estimateAdultWeight(wt, w, profile))));
+  }
+  // Recalculate properly
+  const labels3 = [], data3 = [];
+  for (let w = Math.max(4, ageWeeks - 4); w <= profile.fullWeeks + 4; w += 4) {
+    labels3.push(Math.round(w/4.33) + ' mo');
+    data3.push(parseFloat(estimateAdultWeight(wt, w, profile).toFixed(1)));
+  }
+  if (growthChartInst) growthChartInst.destroy();
+  growthChartInst = new Chart(document.getElementById('growthChart'), {
+    type: 'line',
+    data: {
+      labels: labels3,
+      datasets: [
+        { label: 'Predicted Weight (lbs)', data: data3, borderColor: '#f97316', backgroundColor: 'rgba(249,115,22,.08)', fill: true, tension: 0.4, pointRadius: 3 },
+        { label: 'Adult Target', data: new Array(labels3.length).fill(parseFloat(adultWt.toFixed(1))), borderColor: '#16a34a', borderDash: [5,5], fill: false, pointRadius: 0 }
+      ]
+    },
+    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } }, scales: { y: { beginAtZero: false, title: { display: true, text: 'Weight (lbs)' } } } }
+  });
+
+  // Table
+  const tbody2 = document.getElementById('growth-table-body');
+  tbody2.innerHTML = '';
+  const stages = [
+    [0, 8, 'Neonatal/Early Puppy'],
+    [9, 16, 'Primary Socialization'],
+    [17, 24, 'Fear Imprint Period'],
+    [25, 52, 'Juvenile'],
+    [53, 100, 'Adolescent'],
+    [101, 999, 'Young Adult']
+  ];
+  for (let w = Math.max(4, ageWeeks); w <= profile.fullWeeks + 4; w += 4) {
+    const estWt = estimateAdultWeight(wt, w, profile);
+    const pct = Math.min(100, Math.round(estWt / adultWt * 100));
+    const stage = stages.find(s => w >= s[0] && w <= s[1]);
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td>${Math.round(w/4.33)} months</td><td>${estWt.toFixed(1)}</td><td>${pct}%</td><td>${stage ? stage[2] : 'Adult'}</td>`;
+    tbody2.appendChild(tr);
+  }
+
+  document.getElementById('gr-results').classList.add('visible');
+}
+
+/* ========================================================
+   FAQ
+======================================================== */
+function toggleFaq(el) {
+  const a = el.nextElementSibling;
+  const arrow = el.querySelector('.faq-arrow');
+  a.classList.toggle('open');
+  arrow.classList.toggle('open');
+}
+
+/* ========================================================
+   INIT
+======================================================== */
+document.addEventListener('DOMContentLoaded', () => {
+  renderToxic();
+  renderSafeFoods();
+  showVaccines();
+  document.getElementById('age-size-wrap').style.display = '';
+});
+</script>
+</body>
+</html>
