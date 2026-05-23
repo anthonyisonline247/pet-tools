@@ -200,7 +200,7 @@ footer{background:#fff;border-top:1px solid var(--border);padding:2rem 1.5rem;te
   <div class="header-inner">
     <a href="#" class="logo"><span class="logo-icon">🐾</span> PetToolkit</a>
     <nav class="nav-links">
-      <a class="nav-link" href="#age" onclick="switchTool('age');return false">Age</a>
+      <a class="nav-link active" href="#age" onclick="switchTool('age');return false">Age</a>
       <a class="nav-link" href="#food" onclick="switchTool('food');return false">Food</a>
       <a class="nav-link" href="#weight" onclick="switchTool('weight');return false">Weight</a>
       <a class="nav-link" href="#toxic" onclick="switchTool('toxic');return false">Toxic Foods</a>
@@ -787,9 +787,11 @@ let ageChartInst, foodChartInst, weightChartInst, costChartInst, growthChartInst
 function switchTool(id) {
   document.querySelectorAll('.tool-section').forEach(s => s.classList.remove('active'));
   document.querySelectorAll('.tool-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.nav-link').forEach(n => n.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   const idx = ['age','food','weight','toxic','vaccine','cost','growth'].indexOf(id);
   document.querySelectorAll('.tool-tab')[idx].classList.add('active');
+  document.querySelectorAll('.nav-link')[idx].classList.add('active');
 }
 
 function setPetType(tool, type) {
