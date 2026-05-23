@@ -272,14 +272,9 @@ footer{background:#fff;border-top:1px solid var(--border);padding:2rem 1.5rem;te
         <label>Pet's Age (years)</label>
         <input type="number" id="age-years" min="0" max="30" step="0.5" placeholder="e.g. 3">
       </div>
-      <div class="fg" id="age-size-wrap">
-        <label>Dog Size</label>
-        <select id="age-size">
-          <option value="small">Small (&lt; 20 lbs / 9 kg)</option>
-          <option value="medium" selected>Medium (21–50 lbs / 10–23 kg)</option>
-          <option value="large">Large (51–90 lbs / 23–41 kg)</option>
-          <option value="giant">Giant (&gt; 90 lbs / 41+ kg)</option>
-        </select>
+      <div class="fg" id="age-breed-wrap">
+        <label>Breed</label>
+        <select id="age-breed"></select>
       </div>
     </div>
     <button class="btn-calc" onclick="calcAge()">Calculate Human Age →</button>
@@ -417,13 +412,14 @@ footer{background:#fff;border-top:1px solid var(--border);padding:2rem 1.5rem;te
           <input type="number" id="wt-current" min="1" max="300" placeholder="e.g. 35">
         </div>
         <div class="fg" id="wt-breed-wrap">
-          <label>Breed Size</label>
-          <select id="wt-breed">
-            <option value="toy">Toy (2–6 lbs ideal)</option>
-            <option value="small">Small (7–25 lbs ideal)</option>
-            <option value="medium" selected>Medium (26–55 lbs ideal)</option>
-            <option value="large">Large (56–90 lbs ideal)</option>
-            <option value="giant">Giant (91–175 lbs ideal)</option>
+          <label>Breed</label>
+          <select id="wt-breed"></select>
+        </div>
+        <div class="fg">
+          <label>Sex</label>
+          <select id="wt-gender">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
           </select>
         </div>
         <div class="fg">
@@ -683,13 +679,14 @@ footer{background:#fff;border-top:1px solid var(--border);padding:2rem 1.5rem;te
         <input type="number" id="gr-weight" min="0.5" max="150" step="0.1" placeholder="e.g. 8.5">
       </div>
       <div class="fg" id="gr-size-wrap">
-        <label>Expected Adult Size</label>
-        <select id="gr-size">
-          <option value="toy">Toy (&lt; 12 lbs)</option>
-          <option value="small">Small (12–25 lbs)</option>
-          <option value="medium" selected>Medium (26–55 lbs)</option>
-          <option value="large">Large (56–90 lbs)</option>
-          <option value="giant">Giant (&gt; 90 lbs)</option>
+        <label>Breed</label>
+        <select id="gr-breed"></select>
+      </div>
+      <div class="fg">
+        <label>Sex</label>
+        <select id="gr-gender">
+          <option value="male">Male</option>
+          <option value="female">Female</option>
         </select>
       </div>
     </div>
@@ -797,6 +794,125 @@ let petTypes = { age: 'dog', food: 'dog', wt: 'dog', vax: 'dog', cost: 'dog', gr
 let toxicFilter = 'dog';
 let ageChartInst, foodChartInst, weightChartInst, costChartInst, growthChartInst;
 
+/* ========================================================
+   BREED DATA — source: AKC, VCA, ASPCA breed standards
+======================================================== */
+const DOG_BREEDS = [
+  // Toy
+  { name: 'Chihuahua',                    size: 'toy',    male: [4,6],    female: [3,5],   lifespan: 15, adultMonths: 9  },
+  { name: 'Yorkshire Terrier',            size: 'toy',    male: [5,7],    female: [4,7],   lifespan: 14, adultMonths: 10 },
+  { name: 'Maltese',                      size: 'toy',    male: [4,7],    female: [4,6],   lifespan: 14, adultMonths: 10 },
+  { name: 'Toy Poodle',                   size: 'toy',    male: [4,6],    female: [4,6],   lifespan: 15, adultMonths: 10 },
+  { name: 'Pomeranian',                   size: 'toy',    male: [3,7],    female: [3,7],   lifespan: 14, adultMonths: 10 },
+  { name: 'Papillon',                     size: 'toy',    male: [5,10],   female: [5,9],   lifespan: 14, adultMonths: 10 },
+  { name: 'Dachshund (Miniature)',        size: 'toy',    male: [8,11],   female: [7,10],  lifespan: 14, adultMonths: 11 },
+  // Small
+  { name: 'Shih Tzu',                     size: 'small',  male: [9,16],   female: [9,16],  lifespan: 14, adultMonths: 10 },
+  { name: 'Beagle',                       size: 'small',  male: [20,30],  female: [19,25], lifespan: 13, adultMonths: 11 },
+  { name: 'French Bulldog',              size: 'small',  male: [20,28],  female: [16,24], lifespan: 11, adultMonths: 12 },
+  { name: 'Cavalier King Charles Spaniel',size: 'small', male: [13,18],  female: [12,18], lifespan: 12, adultMonths: 11 },
+  { name: 'Miniature Schnauzer',          size: 'small',  male: [11,20],  female: [10,15], lifespan: 14, adultMonths: 11 },
+  { name: 'Pembroke Welsh Corgi',         size: 'small',  male: [25,30],  female: [22,28], lifespan: 13, adultMonths: 12 },
+  { name: 'Pug',                          size: 'small',  male: [14,18],  female: [13,17], lifespan: 12, adultMonths: 11 },
+  { name: 'Boston Terrier',               size: 'small',  male: [12,25],  female: [11,22], lifespan: 13, adultMonths: 11 },
+  { name: 'Cocker Spaniel',               size: 'small',  male: [24,30],  female: [20,25], lifespan: 13, adultMonths: 12 },
+  { name: 'Miniature Poodle',             size: 'small',  male: [10,15],  female: [10,15], lifespan: 15, adultMonths: 11 },
+  { name: 'Dachshund (Standard)',         size: 'small',  male: [16,32],  female: [14,28], lifespan: 13, adultMonths: 12 },
+  { name: 'Mixed Breed (Small)',          size: 'small',  male: [15,25],  female: [12,22], lifespan: 14, adultMonths: 11 },
+  // Medium
+  { name: 'Border Collie',                size: 'medium', male: [30,55],  female: [27,42], lifespan: 14, adultMonths: 14 },
+  { name: 'Australian Shepherd',          size: 'medium', male: [50,65],  female: [40,55], lifespan: 13, adultMonths: 14 },
+  { name: 'Siberian Husky',               size: 'medium', male: [45,60],  female: [35,50], lifespan: 13, adultMonths: 18 },
+  { name: 'English Bulldog',              size: 'medium', male: [50,55],  female: [40,50], lifespan: 10, adultMonths: 18 },
+  { name: 'English Springer Spaniel',     size: 'medium', male: [45,55],  female: [35,45], lifespan: 13, adultMonths: 14 },
+  { name: 'Whippet',                      size: 'medium', male: [25,40],  female: [25,35], lifespan: 14, adultMonths: 12 },
+  { name: 'American Pit Bull Terrier',    size: 'medium', male: [35,60],  female: [30,50], lifespan: 12, adultMonths: 18 },
+  { name: 'Basset Hound',                 size: 'medium', male: [50,65],  female: [40,60], lifespan: 12, adultMonths: 14 },
+  { name: 'Standard Schnauzer',           size: 'medium', male: [35,50],  female: [30,45], lifespan: 14, adultMonths: 14 },
+  { name: 'Mixed Breed (Medium)',         size: 'medium', male: [30,50],  female: [25,45], lifespan: 13, adultMonths: 14 },
+  // Large
+  { name: 'Labrador Retriever',           size: 'large',  male: [65,80],  female: [55,70], lifespan: 12, adultMonths: 18 },
+  { name: 'Golden Retriever',             size: 'large',  male: [65,75],  female: [55,65], lifespan: 12, adultMonths: 18 },
+  { name: 'German Shepherd',              size: 'large',  male: [65,90],  female: [50,70], lifespan: 11, adultMonths: 18 },
+  { name: 'Standard Poodle',              size: 'large',  male: [60,70],  female: [40,55], lifespan: 14, adultMonths: 18 },
+  { name: 'Boxer',                        size: 'large',  male: [65,80],  female: [50,65], lifespan: 11, adultMonths: 18 },
+  { name: 'Doberman Pinscher',            size: 'large',  male: [75,100], female: [60,90], lifespan: 11, adultMonths: 18 },
+  { name: 'Weimaraner',                   size: 'large',  male: [70,90],  female: [55,75], lifespan: 12, adultMonths: 18 },
+  { name: 'Vizsla',                       size: 'large',  male: [55,65],  female: [44,55], lifespan: 13, adultMonths: 18 },
+  { name: 'Rottweiler',                   size: 'large',  male: [95,135], female: [80,100],lifespan: 10, adultMonths: 24 },
+  { name: 'Belgian Malinois',             size: 'large',  male: [60,80],  female: [40,60], lifespan: 13, adultMonths: 18 },
+  { name: 'Bloodhound',                   size: 'large',  male: [90,110], female: [80,100],lifespan: 10, adultMonths: 18 },
+  { name: 'Mixed Breed (Large)',          size: 'large',  male: [55,80],  female: [45,70], lifespan: 12, adultMonths: 18 },
+  // Giant
+  { name: 'Great Dane',                   size: 'giant',  male: [140,175],female: [110,140],lifespan: 8, adultMonths: 24 },
+  { name: 'Bernese Mountain Dog',         size: 'giant',  male: [80,115], female: [70,95], lifespan: 9,  adultMonths: 24 },
+  { name: 'Saint Bernard',                size: 'giant',  male: [140,180],female: [120,140],lifespan: 8, adultMonths: 24 },
+  { name: 'Newfoundland',                 size: 'giant',  male: [130,150],female: [100,120],lifespan: 9, adultMonths: 24 },
+  { name: 'Great Pyrenees',               size: 'giant',  male: [100,160],female: [85,115], lifespan: 11, adultMonths: 24 },
+  { name: 'Irish Wolfhound',              size: 'giant',  male: [140,180],female: [115,140],lifespan: 7, adultMonths: 24 },
+  { name: 'Alaskan Malamute',             size: 'giant',  male: [75,100], female: [65,85], lifespan: 12, adultMonths: 24 },
+  { name: 'Mixed Breed (Giant)',          size: 'giant',  male: [90,140], female: [75,120], lifespan: 10, adultMonths: 24 },
+];
+
+const CAT_BREEDS = [
+  { name: 'Domestic Shorthair',    male: [8,12],  female: [6,10],  lifespan: 15, adultMonths: 12 },
+  { name: 'Domestic Longhair',     male: [8,12],  female: [6,10],  lifespan: 15, adultMonths: 12 },
+  { name: 'Maine Coon',            male: [15,25], female: [8,15],  lifespan: 14, adultMonths: 24 },
+  { name: 'Persian',               male: [9,14],  female: [7,12],  lifespan: 13, adultMonths: 18 },
+  { name: 'Siamese',               male: [8,12],  female: [6,10],  lifespan: 15, adultMonths: 12 },
+  { name: 'Bengal',                male: [10,15], female: [8,12],  lifespan: 14, adultMonths: 18 },
+  { name: 'Ragdoll',               male: [15,20], female: [10,15], lifespan: 13, adultMonths: 24 },
+  { name: 'British Shorthair',     male: [12,18], female: [9,14],  lifespan: 14, adultMonths: 18 },
+  { name: 'Abyssinian',            male: [8,12],  female: [6,10],  lifespan: 14, adultMonths: 12 },
+  { name: 'Scottish Fold',         male: [9,13],  female: [6,10],  lifespan: 13, adultMonths: 12 },
+  { name: 'American Shorthair',    male: [11,15], female: [8,12],  lifespan: 15, adultMonths: 14 },
+  { name: 'Norwegian Forest Cat',  male: [12,20], female: [8,14],  lifespan: 14, adultMonths: 24 },
+  { name: 'Russian Blue',          male: [10,12], female: [7,10],  lifespan: 15, adultMonths: 14 },
+  { name: 'Turkish Angora',        male: [8,12],  female: [5,9],   lifespan: 15, adultMonths: 12 },
+  { name: 'Birman',                male: [10,15], female: [8,12],  lifespan: 14, adultMonths: 18 },
+  { name: 'Sphynx',                male: [8,12],  female: [6,10],  lifespan: 13, adultMonths: 12 },
+  { name: 'Burmese',               male: [8,12],  female: [6,10],  lifespan: 14, adultMonths: 12 },
+  { name: 'Devon Rex',             male: [6,9],   female: [5,8],   lifespan: 14, adultMonths: 12 },
+  { name: 'Tonkinese',             male: [8,12],  female: [6,10],  lifespan: 14, adultMonths: 12 },
+  { name: 'Mixed Breed',           male: [8,12],  female: [6,10],  lifespan: 15, adultMonths: 12 },
+];
+
+function populateBreeds(type, selectId) {
+  const sel = document.getElementById(selectId);
+  if (!sel) return;
+  const prev = sel.value;
+  sel.innerHTML = '';
+  if (type === 'dog') {
+    const groups = [
+      { label: 'Toy (< 12 lbs)', sizes: ['toy'] },
+      { label: 'Small (12–30 lbs)', sizes: ['small'] },
+      { label: 'Medium (30–65 lbs)', sizes: ['medium'] },
+      { label: 'Large (65–135 lbs)', sizes: ['large'] },
+      { label: 'Giant (135+ lbs)', sizes: ['giant'] },
+    ];
+    groups.forEach(g => {
+      const og = document.createElement('optgroup');
+      og.label = g.label;
+      DOG_BREEDS.filter(b => g.sizes.includes(b.size)).forEach(b => {
+        const o = document.createElement('option');
+        o.value = b.name;
+        o.textContent = b.name;
+        if (b.name === prev) o.selected = true;
+        og.appendChild(o);
+      });
+      sel.appendChild(og);
+    });
+  } else {
+    CAT_BREEDS.forEach(b => {
+      const o = document.createElement('option');
+      o.value = b.name;
+      o.textContent = b.name;
+      if (b.name === prev) o.selected = true;
+      sel.appendChild(o);
+    });
+  }
+}
+
 function switchTool(id) {
   document.querySelectorAll('.tool-section').forEach(s => s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
@@ -812,13 +928,13 @@ function setPetType(tool, type) {
   const catBtn = document.getElementById(tool + '-cat-btn');
   if (dogBtn) { dogBtn.classList.toggle('active', type === 'dog'); catBtn.classList.toggle('active', type === 'cat'); }
   if (tool === 'age') {
-    document.getElementById('age-size-wrap').style.display = type === 'dog' ? '' : 'none';
+    populateBreeds(type, 'age-breed');
   }
   if (tool === 'wt') {
-    document.getElementById('wt-breed-wrap').style.display = type === 'dog' ? '' : 'none';
+    populateBreeds(type, 'wt-breed');
   }
   if (tool === 'gr') {
-    document.getElementById('gr-size-wrap').style.display = type === 'dog' ? '' : 'none';
+    populateBreeds(type, 'gr-breed');
   }
   if (tool === 'cost') {
     document.getElementById('cost-size').parentElement.style.display = type === 'dog' ? '' : 'none';
@@ -874,16 +990,20 @@ function calcAge() {
   const yrs = parseFloat(document.getElementById('age-years').value);
   if (!yrs || yrs <= 0) { alert('Please enter a valid age.'); return; }
   const type = petTypes.age;
-  const size = document.getElementById('age-size').value;
   let humanAge, lifespan, table;
   if (type === 'dog') {
-    table = dogAgeTable[size];
+    const breedName = document.getElementById('age-breed').value;
+    const breed = DOG_BREEDS.find(b => b.name === breedName) || DOG_BREEDS[0];
+    const sizeKey = breed.size === 'toy' ? 'small' : breed.size;
+    table = dogAgeTable[sizeKey] || dogAgeTable.medium;
     humanAge = interpAge(table, yrs);
-    lifespan = dogLifespan[size];
+    lifespan = breed.lifespan;
   } else {
+    const breedName = document.getElementById('age-breed').value;
+    const breed = CAT_BREEDS.find(b => b.name === breedName) || CAT_BREEDS[0];
     table = catAgeTable;
     humanAge = interpAge(table, yrs);
-    lifespan = catLifespan;
+    lifespan = breed.lifespan;
   }
   const pct = Math.min(100, Math.round((yrs / lifespan) * 100));
   const [stage, stageSub] = getLifeStage(humanAge, type);
@@ -1001,9 +1121,16 @@ function calcWeight() {
   const curr = parseFloat(document.getElementById('wt-current').value);
   const bcs = parseInt(document.getElementById('wt-bcs').value);
   const type = petTypes.wt;
-  const sizeKey = type === 'cat' ? 'any' : document.getElementById('wt-breed').value;
+  const gender = document.getElementById('wt-gender').value;
   if (!curr) { alert('Please enter your pet\'s weight.'); return; }
-  const range = type === 'cat' ? idealRanges.cat.any : idealRanges.dog[sizeKey];
+  let range;
+  if (type === 'dog') {
+    const breed = DOG_BREEDS.find(b => b.name === document.getElementById('wt-breed').value) || DOG_BREEDS[0];
+    range = gender === 'male' ? breed.male : breed.female;
+  } else {
+    const breed = CAT_BREEDS.find(b => b.name === document.getElementById('wt-breed').value) || CAT_BREEDS[0];
+    range = gender === 'male' ? breed.male : breed.female;
+  }
   const idealMid = (range[0] + range[1]) / 2;
   const diff = curr - idealMid;
   const diffStr = Math.abs(diff).toFixed(1);
@@ -1374,9 +1501,22 @@ function calcGrowth() {
   const ageWeeks = parseFloat(document.getElementById('gr-age-weeks').value);
   const wt = parseFloat(document.getElementById('gr-weight').value);
   const type = petTypes.gr;
-  const sizeKey = type === 'cat' ? 'cat' : document.getElementById('gr-size').value;
+  const gender = document.getElementById('gr-gender').value;
   if (!ageWeeks || !wt) { alert('Please fill in age and weight.'); return; }
-  const profile = growthProfiles[sizeKey];
+  let profile;
+  if (type === 'dog') {
+    const breed = DOG_BREEDS.find(b => b.name === document.getElementById('gr-breed').value) || DOG_BREEDS[0];
+    const adultRange = gender === 'male' ? breed.male : breed.female;
+    const fullWeeks = Math.round(breed.adultMonths * 4.33);
+    const adultMid = (adultRange[0] + adultRange[1]) / 2;
+    const baseKey = adultMid < 12 ? 'toy' : adultMid < 30 ? 'small' : adultMid < 55 ? 'medium' : adultMid < 90 ? 'large' : 'giant';
+    profile = { ...growthProfiles[baseKey], adultRange, fullWeeks };
+  } else {
+    const breed = CAT_BREEDS.find(b => b.name === document.getElementById('gr-breed').value) || CAT_BREEDS[0];
+    const adultRange = gender === 'male' ? breed.male : breed.female;
+    const fullWeeks = Math.round(breed.adultMonths * 4.33);
+    profile = { ...growthProfiles.cat, adultRange, fullWeeks };
+  }
   const adultWt = estimateAdultWeight(wt, ageWeeks, profile);
   const lo = Math.max(profile.adultRange[0], adultWt * 0.85).toFixed(1);
   const hi = Math.min(profile.adultRange[1], adultWt * 1.15).toFixed(1);
@@ -1455,7 +1595,9 @@ document.addEventListener('DOMContentLoaded', () => {
   renderToxic();
   renderSafeFoods();
   showVaccines();
-  document.getElementById('age-size-wrap').style.display = '';
+  populateBreeds('dog', 'age-breed');
+  populateBreeds('dog', 'wt-breed');
+  populateBreeds('dog', 'gr-breed');
 });
 </script>
 </body>
