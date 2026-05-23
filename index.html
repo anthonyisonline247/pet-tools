@@ -36,9 +36,7 @@ header{background:#fff;border-bottom:1px solid var(--border);padding:0 1.5rem;po
 .header-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:.75rem;height:56px}
 .logo{display:flex;align-items:center;gap:.5rem;font-weight:800;font-size:1.1rem;color:var(--orange);text-decoration:none;letter-spacing:-.01em}
 .logo-icon{font-size:1.4rem}
-.nav-links{display:flex;gap:.25rem;margin-left:auto;flex-wrap:wrap}
-.nav-link{padding:.3rem .7rem;border-radius:6px;font-size:.78rem;font-weight:600;color:var(--muted);text-decoration:none;cursor:pointer;transition:all .15s;border:none;background:none}
-.nav-link:hover,.nav-link.active{background:var(--orange-50);color:var(--orange)}
+.nav-links{display:none}
 
 /* HERO */
 .hero{background:linear-gradient(135deg,#fff7ed 0%,#fef3c7 50%,#fdf2f8 100%);padding:3rem 1.5rem 2rem;text-align:center;border-bottom:1px solid var(--border)}
@@ -49,19 +47,29 @@ header{background:#fff;border-bottom:1px solid var(--border);padding:0 1.5rem;po
 .pill{background:#fff;border:1px solid var(--border);border-radius:100px;padding:.28rem .75rem;font-size:.78rem;font-weight:600;color:var(--muted);display:flex;align-items:center;gap:.3rem}
 .pill em{color:var(--orange);font-style:normal}
 
-/* TOOL NAV */
-.tool-nav{background:#fff;border-bottom:1px solid var(--border);padding:0 1.5rem;overflow-x:auto}
-.tool-nav-inner{max-width:1100px;margin:0 auto;display:flex;gap:0}
-.tool-tab{padding:.9rem 1.1rem;border:none;background:none;font-size:.82rem;font-weight:700;color:var(--muted);cursor:pointer;border-bottom:2.5px solid transparent;transition:all .15s;white-space:nowrap;font-family:inherit}
-.tool-tab:hover{color:var(--orange)}
-.tool-tab.active{color:var(--orange);border-bottom-color:var(--orange)}
+/* TOOL NAV — hidden, kept for JS compatibility */
+.tool-nav{display:none}
+.tool-tab{}
+
+/* TOOL ICON BUTTONS in hero */
+.tool-icons{display:flex;flex-wrap:wrap;gap:.75rem;justify-content:center;margin-top:1.5rem}
+.tool-icon{display:flex;flex-direction:column;align-items:center;gap:.35rem;padding:.75rem 1rem;border-radius:14px;border:2px solid var(--border);background:#fff;cursor:pointer;transition:all .18s;min-width:90px;box-shadow:var(--shadow);font-family:inherit}
+.tool-icon:hover{border-color:var(--orange);box-shadow:0 4px 12px rgba(249,115,22,.15);transform:translateY(-2px)}
+.tool-icon.active{border-color:var(--orange);background:var(--orange-50);box-shadow:0 4px 16px rgba(249,115,22,.2)}
+.tool-icon .ti-emoji{font-size:1.6rem;line-height:1}
+.tool-icon .ti-label{font-size:.72rem;font-weight:700;color:var(--muted);text-align:center;line-height:1.2;white-space:nowrap}
+.tool-icon.active .ti-label{color:var(--orange-dark)}
+@media(max-width:640px){
+  .tool-icon{min-width:calc(25% - .6rem);padding:.6rem .5rem;border-radius:12px}
+  .tool-icon .ti-emoji{font-size:1.35rem}
+  .tool-icon .ti-label{font-size:.65rem}
+}
 
 /* LAYOUT */
 .main{max-width:1100px;margin:0 auto;padding:2rem 1.5rem}
 .tool-section{display:none}
 .tool-section.active{display:block;animation:fadeUp .35s ease}
 @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-.ad-slot{background:#f9fafb;border:2px dashed var(--border);border-radius:var(--radius);padding:1.25rem;text-align:center;color:var(--muted);font-size:.82rem;margin-bottom:2rem}
 
 /* CARD */
 .card{background:#fff;border-radius:var(--radius);border:1px solid var(--border);box-shadow:var(--shadow);padding:1.5rem;margin-bottom:1.5rem}
@@ -199,15 +207,6 @@ footer{background:#fff;border-top:1px solid var(--border);padding:2rem 1.5rem;te
 <header>
   <div class="header-inner">
     <a href="#" class="logo"><span class="logo-icon">🐾</span> PetToolkit</a>
-    <nav class="nav-links">
-      <a class="nav-link active" href="#age" onclick="switchTool('age');return false">Age</a>
-      <a class="nav-link" href="#food" onclick="switchTool('food');return false">Food</a>
-      <a class="nav-link" href="#weight" onclick="switchTool('weight');return false">Weight</a>
-      <a class="nav-link" href="#toxic" onclick="switchTool('toxic');return false">Toxic Foods</a>
-      <a class="nav-link" href="#vaccine" onclick="switchTool('vaccine');return false">Vaccines</a>
-      <a class="nav-link" href="#cost" onclick="switchTool('cost');return false">Cost</a>
-      <a class="nav-link" href="#growth" onclick="switchTool('growth');return false">Growth</a>
-    </nav>
   </div>
 </header>
 
@@ -215,16 +214,31 @@ footer{background:#fff;border-top:1px solid var(--border);padding:2rem 1.5rem;te
 <section class="hero">
   <h1>The Complete <span>Dog & Cat</span> Toolkit</h1>
   <p>7 science-backed tools in one place — age conversion, calorie calculator, toxic food checker, vaccine schedules, weight assessment, cost estimator & growth predictor.</p>
-  <div class="pills">
-    <div class="pill">🐶 <em>Dog</em> &amp; 🐱 <em>Cat</em></div>
-    <div class="pill">✅ <em>100% Free</em></div>
-    <div class="pill">🔬 <em>Vet-Backed Formulas</em></div>
-    <div class="pill">📱 <em>No App Needed</em></div>
-    <div class="pill">🚫 <em>No Sign-Up</em></div>
+  <div class="tool-icons" id="tool-icons">
+    <button class="tool-icon active" id="ti-age" onclick="switchTool('age')">
+      <span class="ti-emoji">🎂</span><span class="ti-label">Age in<br>Human Years</span>
+    </button>
+    <button class="tool-icon" id="ti-food" onclick="switchTool('food')">
+      <span class="ti-emoji">🍽️</span><span class="ti-label">Food &<br>Calories</span>
+    </button>
+    <button class="tool-icon" id="ti-weight" onclick="switchTool('weight')">
+      <span class="ti-emoji">⚖️</span><span class="ti-label">Weight<br>Assessment</span>
+    </button>
+    <button class="tool-icon" id="ti-toxic" onclick="switchTool('toxic')">
+      <span class="ti-emoji">☠️</span><span class="ti-label">Toxic Food<br>Checker</span>
+    </button>
+    <button class="tool-icon" id="ti-vaccine" onclick="switchTool('vaccine')">
+      <span class="ti-emoji">💉</span><span class="ti-label">Vaccine<br>Schedule</span>
+    </button>
+    <button class="tool-icon" id="ti-cost" onclick="switchTool('cost')">
+      <span class="ti-emoji">💰</span><span class="ti-label">Annual<br>Cost</span>
+    </button>
+    <button class="tool-icon" id="ti-growth" onclick="switchTool('growth')">
+      <span class="ti-emoji">📏</span><span class="ti-label">Growth<br>Predictor</span>
+    </button>
   </div>
 </section>
 
-<!-- TOOL TABS -->
 <nav class="tool-nav">
   <div class="tool-nav-inner">
     <button class="tool-tab active" onclick="switchTool('age')">🎂 Age in Human Years</button>
@@ -239,8 +253,6 @@ footer{background:#fff;border-top:1px solid var(--border);padding:2rem 1.5rem;te
 
 <main class="main">
 
-<!-- AD SLOT -->
-<div class="ad-slot">📢 Advertisement — <a href="#" style="color:var(--orange)">Get your ad here</a></div>
 
 <!-- ===================== AGE CALCULATOR ===================== -->
 <section id="age" class="tool-section active">
@@ -786,12 +798,11 @@ let ageChartInst, foodChartInst, weightChartInst, costChartInst, growthChartInst
 
 function switchTool(id) {
   document.querySelectorAll('.tool-section').forEach(s => s.classList.remove('active'));
-  document.querySelectorAll('.tool-tab').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.nav-link').forEach(n => n.classList.remove('active'));
   document.getElementById(id).classList.add('active');
-  const idx = ['age','food','weight','toxic','vaccine','cost','growth'].indexOf(id);
-  document.querySelectorAll('.tool-tab')[idx].classList.add('active');
-  document.querySelectorAll('.nav-link')[idx].classList.add('active');
+  document.querySelectorAll('.tool-icon').forEach(t => t.classList.remove('active'));
+  const ti = document.getElementById('ti-' + id);
+  if (ti) ti.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function setPetType(tool, type) {
