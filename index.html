@@ -52,17 +52,18 @@ header{background:#fff;border-bottom:1px solid var(--border);padding:0 1.5rem;po
 .tool-tab{}
 
 /* TOOL ICON BUTTONS in hero */
-.tool-icons{display:flex;flex-wrap:wrap;gap:.75rem;justify-content:center;margin-top:1.5rem}
-.tool-icon{display:flex;flex-direction:column;align-items:center;gap:.35rem;padding:.75rem 1rem;border-radius:14px;border:2px solid var(--border);background:#fff;cursor:pointer;transition:all .18s;min-width:90px;box-shadow:var(--shadow);font-family:inherit}
+.tool-icons{display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center;margin-top:1.5rem}
+.tool-icon{display:flex;flex-direction:row;align-items:center;gap:.55rem;padding:.6rem 1.1rem;border-radius:100px;border:2px solid var(--border);background:#fff;cursor:pointer;transition:all .18s;white-space:nowrap;box-shadow:var(--shadow);font-family:inherit}
 .tool-icon:hover{border-color:var(--orange);box-shadow:0 4px 12px rgba(249,115,22,.15);transform:translateY(-2px)}
 .tool-icon.active{border-color:var(--orange);background:var(--orange-50);box-shadow:0 4px 16px rgba(249,115,22,.2)}
-.tool-icon .ti-emoji{font-size:1.6rem;line-height:1}
-.tool-icon .ti-label{font-size:.72rem;font-weight:700;color:var(--muted);text-align:center;line-height:1.2;white-space:nowrap}
+.tool-icon .ti-emoji{font-size:1.25rem;line-height:1;flex-shrink:0}
+.tool-icon .ti-label{font-size:.78rem;font-weight:700;color:var(--muted);line-height:1.15;white-space:nowrap}
 .tool-icon.active .ti-label{color:var(--orange-dark)}
 @media(max-width:640px){
-  .tool-icon{min-width:calc(25% - .6rem);padding:.6rem .5rem;border-radius:12px}
-  .tool-icon .ti-emoji{font-size:1.35rem}
-  .tool-icon .ti-label{font-size:.65rem}
+  .tool-icons{gap:.45rem}
+  .tool-icon{padding:.5rem .85rem}
+  .tool-icon .ti-emoji{font-size:1.1rem}
+  .tool-icon .ti-label{font-size:.72rem}
 }
 
 /* LAYOUT */
@@ -216,25 +217,25 @@ footer{background:#fff;border-top:1px solid var(--border);padding:2rem 1.5rem;te
   <p>7 science-backed tools in one place — age conversion, calorie calculator, toxic food checker, vaccine schedules, weight assessment, cost estimator & growth predictor.</p>
   <div class="tool-icons" id="tool-icons">
     <button class="tool-icon active" id="ti-age" onclick="switchTool('age')">
-      <span class="ti-emoji">🎂</span><span class="ti-label">Age in<br>Human Years</span>
+      <span class="ti-emoji">🎂</span><span class="ti-label">Age Calculator</span>
     </button>
     <button class="tool-icon" id="ti-food" onclick="switchTool('food')">
-      <span class="ti-emoji">🍽️</span><span class="ti-label">Food &<br>Calories</span>
+      <span class="ti-emoji">🍽️</span><span class="ti-label">Food & Calories</span>
     </button>
     <button class="tool-icon" id="ti-weight" onclick="switchTool('weight')">
-      <span class="ti-emoji">⚖️</span><span class="ti-label">Weight<br>Assessment</span>
+      <span class="ti-emoji">⚖️</span><span class="ti-label">Weight Check</span>
     </button>
     <button class="tool-icon" id="ti-toxic" onclick="switchTool('toxic')">
-      <span class="ti-emoji">☠️</span><span class="ti-label">Toxic Food<br>Checker</span>
+      <span class="ti-emoji">☠️</span><span class="ti-label">Toxic Foods</span>
     </button>
     <button class="tool-icon" id="ti-vaccine" onclick="switchTool('vaccine')">
-      <span class="ti-emoji">💉</span><span class="ti-label">Vaccine<br>Schedule</span>
+      <span class="ti-emoji">💉</span><span class="ti-label">Vaccines</span>
     </button>
     <button class="tool-icon" id="ti-cost" onclick="switchTool('cost')">
-      <span class="ti-emoji">💰</span><span class="ti-label">Annual<br>Cost</span>
+      <span class="ti-emoji">💰</span><span class="ti-label">Annual Cost</span>
     </button>
     <button class="tool-icon" id="ti-growth" onclick="switchTool('growth')">
-      <span class="ti-emoji">📏</span><span class="ti-label">Growth<br>Predictor</span>
+      <span class="ti-emoji">📏</span><span class="ti-label">Growth Predictor</span>
     </button>
   </div>
 </section>
