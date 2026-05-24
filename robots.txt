@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: Sitemap: https://anthonyisonline247.github.io/pet-tools/sitemap.xml
+Sitemap: https://anthonyisonline247.github.io/pet-tools/sitemap.xml
