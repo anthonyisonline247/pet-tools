@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://anthonyisonline247.github.io/pet-tools/sitemap.xml
+Sitemap: https://www.pawsmartmate.com/sitemap.xml
