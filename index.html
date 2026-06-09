@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dog Calorie Calculator by Breed | How Much to Feed a Dog or Cat — PawSmartMate</title>
-<meta name="description" content="Free dog & cat calorie calculator by breed — find exact daily kcal needs by breed, weight, life stage & activity. Breed auto-fill, meal plan, weight loss timeline & popular breed calorie guide. Plus 7 more vet-backed tools. No sign-up.">
-<meta name="keywords" content="dog calorie calculator, cat calorie calculator, dog calorie calculator by breed, how many calories should my dog eat, how many calories does a cat need per day, how much should I feed my dog, how much to feed a dog, dog daily calorie intake, cat daily calorie needs, puppy calorie calculator, kitten calorie calculator, dog food calculator by weight, cat food calculator, how much should I feed my cat per day, dog weight loss calorie calculator, pet calorie calculator, calories for dogs by weight, dog calorie needs by breed, labrador retriever calorie calculator, golden retriever daily calories, how many calories does a puppy need, how many kcal per day for a dog, dog food portions calculator, how much dry food should I feed my dog, how many calories does a beagle need, labrador daily food calculator, how to calculate dog food portions, dog age calculator by breed, cat age calculator, is chocolate toxic to dogs, puppy growth calculator, pet vaccine schedule, annual cost of owning a dog, are grapes toxic to dogs, dog weight calculator by breed, cat human age">
+<title>Dog & Cat Calorie Calculator | Homemade Pet Food Calculator + 8 Free Tools — PawSmartMate</title>
+<meta name="description" content="Free dog & cat calorie calculator by breed + homemade pet food calorie calculator — find exact daily kcal needs, calculate raw/homemade recipe calories, meal plan, weight loss timeline & popular breed calorie guide. 9 vet-backed tools. No sign-up.">
+<meta name="keywords" content="dog calorie calculator, cat calorie calculator, dog calorie calculator by breed, homemade dog food calorie calculator, raw dog food calculator, how many calories in homemade dog food, homemade cat food calorie calculator, raw diet dog calculator, BARF diet calculator, how much homemade food to feed my dog, how to calculate calories in homemade dog food, dog food recipe calories, how many calories should my dog eat, how many calories does a cat need per day, how much should I feed my dog, how much to feed a dog, dog daily calorie intake, cat daily calorie needs, puppy calorie calculator, kitten calorie calculator, dog food calculator by weight, cat food calculator, how much should I feed my cat per day, dog weight loss calorie calculator, pet calorie calculator, calories for dogs by weight, dog calorie needs by breed, labrador retriever calorie calculator, golden retriever daily calories, how many calories does a puppy need, how many kcal per day for a dog, dog food portions calculator, how much dry food should I feed my dog, how many calories does a beagle need, labrador daily food calculator, how to calculate dog food portions, dog age calculator by breed, cat age calculator, is chocolate toxic to dogs, puppy growth calculator, pet vaccine schedule, annual cost of owning a dog, are grapes toxic to dogs, dog weight calculator by breed, cat human age">
 <link rel="canonical" href="https://www.pawsmartmate.com/">
 <meta property="og:url" content="https://www.pawsmartmate.com/">
-<meta property="og:title" content="Dog Calorie Calculator by Breed | How Much to Feed a Dog or Cat — PawSmartMate">
-<meta property="og:description" content="Free dog & cat calorie calculator by breed: daily kcal needs by breed, weight, life stage & activity. Breed auto-fill, meal plan, popular breed calorie guide & more. Vet-backed. No sign-up.">
+<meta property="og:title" content="Dog & Cat Calorie Calculator + Homemade Pet Food Calculator — PawSmartMate">
+<meta property="og:description" content="Free dog & cat calorie calculator by breed + homemade/raw food calorie calculator: daily kcal needs, recipe calories, meal plan, breed guide & more. 9 vet-backed tools. No sign-up.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://www.pawsmartmate.com/og-image.png">
 <meta property="og:image:width" content="1200">
@@ -18,8 +18,8 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="PawSmartMate">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Dog Calorie Calculator by Breed | How Much to Feed a Dog or Cat — PawSmartMate">
-<meta name="twitter:description" content="Free dog & cat calorie calculator by breed + 7 vet-backed tools: age, toxic food checker, vaccines & cost. No sign-up.">
+<meta name="twitter:title" content="Dog & Cat Calorie Calculator + Homemade Pet Food Calculator — PawSmartMate">
+<meta name="twitter:description" content="Free dog & cat calorie calculator + homemade/raw food calculator + 8 vet-backed tools: age, toxic food checker, vaccines & cost. No sign-up.">
 <meta name="twitter:image" content="https://www.pawsmartmate.com/og-image.png">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <meta name="author" content="PawSmartMate">
@@ -42,6 +42,7 @@
       },
       "featureList": [
         "Dog & Cat Calorie Calculator by Breed",
+        "Homemade & Raw Pet Food Calorie Calculator",
         "Popular Breeds Calorie Reference Guide",
         "Dog & Cat Age Calculator",
         "Pet Food & Portion Calculator",
@@ -471,8 +472,8 @@ footer{background:#fff;border-top:1px solid var(--border);padding:2rem 1.5rem;te
 
 <!-- HERO -->
 <section class="hero">
-  <h1>Dog & Cat <span>Calorie Calculator</span> by Breed + 7 Free Pet Tools</h1>
-  <p>Calculate daily calories by breed, find ideal portions, check toxic foods, track vaccines & estimate annual costs — all free, vet-backed, no sign-up.</p>
+  <h1>Dog & Cat <span>Calorie Calculator</span> by Breed + Homemade Food Calc + 8 Free Pet Tools</h1>
+  <p>Calculate daily calories by breed, calculate homemade & raw food recipe calories, find ideal portions, check toxic foods, track vaccines & estimate annual costs — all free, vet-backed, no sign-up.</p>
   <div class="tool-icons" id="tool-icons">
     <button class="tool-icon active" id="ti-calorie" onclick="switchTool('calorie')">
       <span class="ti-emoji">🔥</span><span class="ti-label">Calorie Calculator</span>
@@ -498,6 +499,9 @@ footer{background:#fff;border-top:1px solid var(--border);padding:2rem 1.5rem;te
     <button class="tool-icon" id="ti-growth" onclick="switchTool('growth')">
       <span class="ti-emoji">📏</span><span class="ti-label">Growth Predictor</span>
     </button>
+    <button class="tool-icon" id="ti-homemade" onclick="switchTool('homemade')">
+      <span class="ti-emoji">🥩</span><span class="ti-label">Homemade Food</span>
+    </button>
   </div>
 </section>
 
@@ -511,6 +515,7 @@ footer{background:#fff;border-top:1px solid var(--border);padding:2rem 1.5rem;te
     <button class="tool-tab" onclick="switchTool('vaccine')">💉 Vaccine Schedule</button>
     <button class="tool-tab" onclick="switchTool('cost')">💰 Annual Cost</button>
     <button class="tool-tab" onclick="switchTool('growth')">📏 Growth Predictor</button>
+    <button class="tool-tab" onclick="switchTool('homemade')">🥩 Homemade Food Calc</button>
   </div>
 </nav>
 
@@ -1214,6 +1219,99 @@ footer{background:#fff;border-top:1px solid var(--border);padding:2rem 1.5rem;te
   </div>
 </div>
 
+
+<!-- ===================== HOMEMADE FOOD CALCULATOR ===================== -->
+<section id="homemade" class="tool-section">
+  <div class="card">
+    <div class="card-title">🥩 Homemade & Raw Pet Food Calorie Calculator</div>
+    <p class="section-intro" style="margin-bottom:1rem">Calculate calories in your homemade or raw dog/cat food recipe. Enter your pet's details and add recipe ingredients to find out how much to feed per day.</p>
+    <div class="pet-toggle">
+      <button class="pet-btn active" id="homemade-dog-btn" onclick="setPetType('homemade','dog')">🐶 Dog</button>
+      <button class="pet-btn" id="homemade-cat-btn" onclick="setPetType('homemade','cat')">🐱 Cat</button>
+    </div>
+    <div class="form-grid">
+      <div class="fg">
+        <label>Pet's Weight (lbs)</label>
+        <input type="number" id="hm-pet-weight" min="1" max="250" placeholder="e.g. 25">
+      </div>
+      <div class="fg">
+        <label>Life Stage</label>
+        <select id="hm-stage">
+          <option value="puppy">Puppy / Kitten (&lt; 1 yr)</option>
+          <option value="adult" selected>Adult (1–7 years)</option>
+          <option value="senior">Senior (7+ years)</option>
+        </select>
+      </div>
+    </div>
+
+    <h3 style="margin:1.25rem 0 0.5rem;font-size:.95rem;font-weight:700;color:#374151">Recipe Ingredients</h3>
+    <p style="font-size:.82rem;color:#6b7280;margin-bottom:.75rem">All amounts in <strong>ounces (oz)</strong>. Nutritional values based on cooked weight unless noted.</p>
+    <div style="display:grid;grid-template-columns:1fr 110px 32px;gap:.5rem;margin-bottom:.35rem;padding:0 .1rem">
+      <span style="font-size:.75rem;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:.04em">Ingredient</span>
+      <span style="font-size:.75rem;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:.04em">Amount (oz)</span>
+      <span></span>
+    </div>
+    <div id="hm-ingredients">
+      <div class="hm-row" style="display:grid;grid-template-columns:1fr 110px 32px;gap:.5rem;margin-bottom:.5rem">
+        <select class="hm-ing-select" style="padding:.5rem .75rem;border:1px solid #d1d5db;border-radius:8px;font-size:.9rem;background:#fff"><option value="">— select ingredient —</option></select>
+        <input type="number" class="hm-ing-oz" min="0.1" step="0.1" placeholder="oz" style="padding:.5rem .75rem;border:1px solid #d1d5db;border-radius:8px;font-size:.9rem;text-align:center">
+        <button onclick="removeIngredientRow(this)" title="Remove" style="background:#fee2e2;border:none;border-radius:6px;cursor:pointer;color:#dc2626;font-size:1.1rem;font-weight:700;line-height:1">×</button>
+      </div>
+    </div>
+    <button onclick="addIngredientRow()" style="background:#f3f4f6;border:1px solid #e5e7eb;border-radius:8px;padding:.45rem 1rem;cursor:pointer;color:#374151;font-size:.85rem;margin-bottom:1.25rem;margin-top:.25rem">+ Add Ingredient</button>
+
+    <button class="btn-calc" onclick="calcHomemade()">Calculate Recipe Calories →</button>
+  </div>
+
+  <div id="homemade-results" class="results-section">
+    <div class="kpi-grid">
+      <div class="kpi"><div class="kpi-label">Recipe Total</div><div class="kpi-val" id="hm-total-kcal">—</div><div class="kpi-sub">kcal in this batch</div></div>
+      <div class="kpi sky"><div class="kpi-label">Pet's Daily Need</div><div class="kpi-val" id="hm-daily-need">—</div><div class="kpi-sub">kcal/day</div></div>
+      <div class="kpi amber"><div class="kpi-label">Batch Lasts</div><div class="kpi-val" id="hm-servings">—</div><div class="kpi-sub">days</div></div>
+      <div class="kpi green"><div class="kpi-label">Daily Serving</div><div class="kpi-val" id="hm-serving-oz">—</div><div class="kpi-sub">oz per day</div></div>
+    </div>
+
+    <div class="result-box">
+      <h3>🥣 Feeding Summary</h3>
+      <p id="hm-result-text">—</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">📊 Macronutrient Breakdown</div>
+      <div class="chart-wrap" style="height:220px"><canvas id="homemadeChart"></canvas></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">📋 Ingredient Calorie Breakdown</div>
+      <div style="overflow-x:auto">
+        <table class="info-table">
+          <thead><tr><th>Ingredient</th><th>Amount (oz)</th><th>Calories (kcal)</th><th>Protein (g)</th><th>Fat (g)</th></tr></thead>
+          <tbody id="hm-ing-breakdown"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:1.5rem">
+    <div class="card-title">📖 How to Calculate Homemade Pet Food Calories</div>
+    <div class="tool-intro" style="margin-bottom:0">
+      <strong>🥩 Homemade & Raw Food</strong> — This calculator estimates the caloric content of your homemade or raw pet food recipe using published USDA nutritional data. Total calories are compared against your pet's Daily Energy Requirement (DER) calculated with the veterinary RER formula: <strong>70 × (kg)<sup>0.75</sup> × life-stage factor</strong>. The result tells you how many ounces to feed daily and how many days the batch will last.<br><br>
+      <strong>⚠️ Important:</strong> Homemade diets can be nutritionally incomplete without proper balancing. A recipe that hits the calorie target may still be deficient in calcium, taurine, vitamins, or other critical nutrients. Consult a board-certified veterinary nutritionist (DACVN) before making homemade or raw food the sole diet — especially for cats, who require dietary taurine.
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:1.5rem">
+    <div class="card-title">🥘 Ingredient Calorie Reference (per 100g / 3.5 oz)</div>
+    <p class="section-intro">Cooked weight unless noted. Use these values to manually verify or plan recipes.</p>
+    <div style="overflow-x:auto">
+      <table class="info-table">
+        <thead><tr><th>Ingredient</th><th>kcal / 100g</th><th>Protein (g)</th><th>Fat (g)</th><th>Notes</th></tr></thead>
+        <tbody id="hm-ref-body"></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
 </main>
 
 <footer>
@@ -1227,6 +1325,7 @@ footer{background:#fff;border-top:1px solid var(--border);padding:2rem 1.5rem;te
       <a href="#" onclick="switchTool('vaccine');return false;">Vaccine Schedule</a>
       <a href="#" onclick="switchTool('cost');return false;">Cost Estimator</a>
       <a href="#" onclick="switchTool('growth');return false;">Growth Predictor</a>
+      <a href="#" onclick="switchTool('homemade');return false;">Homemade Food Calc</a>
     </div>
     <p class="footer-note">For educational purposes only. Always consult a licensed veterinarian for medical advice, diagnosis, or treatment decisions. In emergencies contact ASPCA Poison Control: (888) 426-4435.</p>
   </div>
@@ -1236,7 +1335,7 @@ footer{background:#fff;border-top:1px solid var(--border);padding:2rem 1.5rem;te
 /* ========================================================
    GLOBALS
 ======================================================== */
-let petTypes = { age: 'dog', food: 'dog', wt: 'dog', vax: 'dog', cost: 'dog', gr: 'dog', calorie: 'dog' };
+let petTypes = { age: 'dog', food: 'dog', wt: 'dog', vax: 'dog', cost: 'dog', gr: 'dog', calorie: 'dog', homemade: 'dog' };
 let toxicFilter = 'dog';
 let ageChartInst, foodChartInst, weightChartInst, costChartInst, growthChartInst, calorieChartInst;
 
@@ -2254,6 +2353,162 @@ function setBreedGuideType(type) {
 }
 
 /* ========================================================
+   HOMEMADE FOOD CALCULATOR
+======================================================== */
+const HOMEMADE_INGREDIENTS = [
+  { name: 'Chicken Breast (cooked)', kcal: 165, protein: 31.0, fat: 3.6, notes: 'Lean; excellent for dogs & cats' },
+  { name: 'Ground Beef 85% lean (cooked)', kcal: 215, protein: 26.0, fat: 12.0, notes: 'Rich in B12 and zinc' },
+  { name: 'Ground Turkey (cooked)', kcal: 189, protein: 29.0, fat: 7.4, notes: 'Moderate fat; good for weight control' },
+  { name: 'Salmon (cooked)', kcal: 206, protein: 20.0, fat: 13.0, notes: 'High omega-3; limit 2–3×/week' },
+  { name: 'Lamb (cooked)', kcal: 258, protein: 25.0, fat: 17.0, notes: 'Good for dogs with chicken allergies' },
+  { name: 'Beef Liver (cooked)', kcal: 175, protein: 27.0, fat: 5.0, notes: 'Nutrient-dense; max 5% of diet' },
+  { name: 'Chicken Liver (cooked)', kcal: 166, protein: 24.0, fat: 6.0, notes: 'High vitamin A; limit to 5% of diet' },
+  { name: 'Sardines (in water, drained)', kcal: 208, protein: 25.0, fat: 11.0, notes: 'Excellent omega-3 source' },
+  { name: 'Eggs (whole, cooked)', kcal: 155, protein: 13.0, fat: 11.0, notes: 'Complete amino acid profile' },
+  { name: 'Cottage Cheese (low-fat)', kcal: 72, protein: 12.0, fat: 1.0, notes: 'Good protein; watch for lactose sensitivity' },
+  { name: 'White Rice (cooked)', kcal: 130, protein: 2.7, fat: 0.3, notes: 'Easy to digest; good for upset stomachs' },
+  { name: 'Brown Rice (cooked)', kcal: 123, protein: 2.6, fat: 0.9, notes: 'More fiber than white rice' },
+  { name: 'Sweet Potato (cooked)', kcal: 90, protein: 2.0, fat: 0.1, notes: 'Rich in beta-carotene and fiber' },
+  { name: 'Oatmeal (cooked)', kcal: 71, protein: 2.5, fat: 1.5, notes: 'For dogs; limited benefit for cats' },
+  { name: 'Pumpkin (plain cooked)', kcal: 26, protein: 1.0, fat: 0.1, notes: 'Great for digestion; low calorie' },
+  { name: 'Carrots (cooked)', kcal: 35, protein: 0.8, fat: 0.2, notes: 'Low calorie; good weight-management filler' },
+  { name: 'Green Beans (cooked)', kcal: 31, protein: 1.8, fat: 0.2, notes: 'Very low calorie; great for weight loss' },
+  { name: 'Peas (cooked)', kcal: 84, protein: 5.4, fat: 0.4, notes: 'Higher protein for a vegetable' },
+  { name: 'Spinach (cooked)', kcal: 23, protein: 3.0, fat: 0.4, notes: 'Limit — high oxalates; avoid for cats with UTIs' },
+  { name: 'Blueberries (raw)', kcal: 57, protein: 0.7, fat: 0.3, notes: 'Safe treat; antioxidant-rich' },
+  { name: 'Salmon Oil (supplement)', kcal: 885, protein: 0.0, fat: 100.0, notes: 'Omega-3; 1 tsp (5 mL) ≈ 40 kcal' },
+  { name: 'Coconut Oil (supplement)', kcal: 862, protein: 0.0, fat: 100.0, notes: 'MCT fat; max 1 tsp/day for dogs' },
+];
+
+function populateIngredientDropdown(sel) {
+  sel.innerHTML = '<option value="">— select ingredient —</option>';
+  HOMEMADE_INGREDIENTS.forEach((ing, i) => {
+    const opt = document.createElement('option');
+    opt.value = i;
+    opt.textContent = ing.name;
+    sel.appendChild(opt);
+  });
+}
+
+function addIngredientRow() {
+  const container = document.getElementById('hm-ingredients');
+  const row = document.createElement('div');
+  row.className = 'hm-row';
+  row.style.cssText = 'display:grid;grid-template-columns:1fr 110px 32px;gap:.5rem;margin-bottom:.5rem';
+  const sel = document.createElement('select');
+  sel.className = 'hm-ing-select';
+  sel.style.cssText = 'padding:.5rem .75rem;border:1px solid #d1d5db;border-radius:8px;font-size:.9rem;background:#fff';
+  populateIngredientDropdown(sel);
+  const inp = document.createElement('input');
+  inp.type = 'number'; inp.className = 'hm-ing-oz'; inp.min = '0.1'; inp.step = '0.1'; inp.placeholder = 'oz';
+  inp.style.cssText = 'padding:.5rem .75rem;border:1px solid #d1d5db;border-radius:8px;font-size:.9rem;text-align:center';
+  const btn = document.createElement('button');
+  btn.onclick = function() { removeIngredientRow(this); };
+  btn.title = 'Remove';
+  btn.style.cssText = 'background:#fee2e2;border:none;border-radius:6px;cursor:pointer;color:#dc2626;font-size:1.1rem;font-weight:700;line-height:1';
+  btn.textContent = '×';
+  row.appendChild(sel); row.appendChild(inp); row.appendChild(btn);
+  container.appendChild(row);
+}
+
+function removeIngredientRow(btn) {
+  const rows = document.querySelectorAll('#hm-ingredients .hm-row');
+  if (rows.length > 1) btn.closest('.hm-row').remove();
+}
+
+function calcHomemade() {
+  const petWtLbs = parseFloat(document.getElementById('hm-pet-weight').value);
+  if (!petWtLbs || petWtLbs <= 0) { alert("Please enter your pet's weight."); return; }
+  const stage = document.getElementById('hm-stage').value;
+  const stageFactors = { puppy: 2.0, adult: 1.6, senior: 1.4 };
+  const derFactor = stageFactors[stage] || 1.6;
+  const wtKg = petWtLbs / 2.205;
+  const der = Math.round(70 * Math.pow(wtKg, 0.75) * derFactor);
+
+  const rows = document.querySelectorAll('#hm-ingredients .hm-row');
+  let totalKcal = 0, totalProtein = 0, totalFat = 0, totalOz = 0;
+  const breakdown = [];
+  let hasIngredients = false;
+
+  rows.forEach(row => {
+    const sel = row.querySelector('.hm-ing-select');
+    const ozInput = row.querySelector('.hm-ing-oz');
+    const ingIdx = parseInt(sel.value);
+    const oz = parseFloat(ozInput.value);
+    if (isNaN(ingIdx) || !oz || oz <= 0) return;
+    const ing = HOMEMADE_INGREDIENTS[ingIdx];
+    const grams = oz * 28.3495;
+    const kcal = Math.round(ing.kcal * grams / 100);
+    const protein = Math.round(ing.protein * grams / 100 * 10) / 10;
+    const fat = Math.round(ing.fat * grams / 100 * 10) / 10;
+    totalKcal += kcal; totalProtein += protein; totalFat += fat; totalOz += oz;
+    breakdown.push({ name: ing.name, oz: oz.toFixed(1), kcal, protein, fat });
+    hasIngredients = true;
+  });
+
+  if (!hasIngredients) { alert('Please select at least one ingredient and enter an amount.'); return; }
+
+  const daysLast = totalKcal > 0 ? Math.floor((totalKcal / der) * 10) / 10 : 0;
+  const servingOz = daysLast > 0 ? (totalOz / daysLast).toFixed(1) : '—';
+
+  document.getElementById('hm-total-kcal').textContent = totalKcal.toLocaleString();
+  document.getElementById('hm-daily-need').textContent = der.toLocaleString();
+  document.getElementById('hm-servings').textContent = daysLast.toFixed(1);
+  document.getElementById('hm-serving-oz').textContent = servingOz + ' oz';
+
+  let summaryText = 'This recipe contains <strong>' + totalKcal.toLocaleString() + ' kcal</strong> total. ';
+  summaryText += 'Your pet needs approximately <strong>' + der + ' kcal/day</strong> (' + stage + ' life stage). ';
+  if (daysLast >= 1) {
+    summaryText += 'Feed roughly <strong>' + servingOz + ' oz per day</strong> — this batch will last about <strong>' + daysLast.toFixed(1) + ' day' + (daysLast >= 2 ? 's' : '') + '</strong>.';
+  } else {
+    summaryText += 'This batch covers less than a full day. Feed all <strong>' + totalOz.toFixed(1) + ' oz</strong> today and make more tomorrow.';
+  }
+  if (petTypes.homemade === 'cat') {
+    summaryText += ' <em>Cats are obligate carnivores — ensure protein makes up at least 70% of this recipe and that taurine is supplemented.</em>';
+  }
+  document.getElementById('hm-result-text').innerHTML = summaryText;
+
+  const tbody = document.getElementById('hm-ing-breakdown');
+  tbody.innerHTML = '';
+  breakdown.forEach(b => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = '<td>' + b.name + '</td><td>' + b.oz + '</td><td>' + b.kcal + '</td><td>' + b.protein + '</td><td>' + b.fat + '</td>';
+    tbody.appendChild(tr);
+  });
+  const totRow = document.createElement('tr');
+  totRow.style.fontWeight = '700';
+  totRow.innerHTML = '<td>TOTAL</td><td>' + totalOz.toFixed(1) + '</td><td>' + totalKcal + '</td><td>' + totalProtein.toFixed(1) + '</td><td>' + totalFat.toFixed(1) + '</td>';
+  tbody.appendChild(totRow);
+
+  const proteinKcal = Math.round(totalProtein * 4);
+  const fatKcal = Math.round(totalFat * 9);
+  const carbKcal = Math.max(0, totalKcal - proteinKcal - fatKcal);
+  const ctx = document.getElementById('homemadeChart').getContext('2d');
+  if (window._hmChart) window._hmChart.destroy();
+  window._hmChart = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: ['Protein (' + proteinKcal + ' kcal)', 'Fat (' + fatKcal + ' kcal)', 'Carbohydrates (' + carbKcal + ' kcal)'],
+      datasets: [{ data: [proteinKcal, fatKcal, carbKcal], backgroundColor: ['#16a34a','#f59e0b','#60a5fa'], borderWidth: 2 }]
+    },
+    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } } }
+  });
+
+  document.getElementById('homemade-results').classList.add('visible');
+}
+
+function renderHomemadeRef() {
+  const tbody = document.getElementById('hm-ref-body');
+  if (!tbody) return;
+  tbody.innerHTML = '';
+  HOMEMADE_INGREDIENTS.forEach(ing => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = '<td>' + ing.name + '</td><td>' + ing.kcal + '</td><td>' + ing.protein + '</td><td>' + ing.fat + '</td><td style="color:#6b7280;font-size:.8rem">' + ing.notes + '</td>';
+    tbody.appendChild(tr);
+  });
+}
+
+/* ========================================================
    INIT
 ======================================================== */
 document.addEventListener('DOMContentLoaded', () => {
@@ -2265,6 +2520,8 @@ document.addEventListener('DOMContentLoaded', () => {
   populateBreeds('dog', 'gr-breed');
   populateBreeds('dog', 'cal-breed');
   renderBreedCalorieGuide('dog');
+  populateIngredientDropdown(document.querySelector('#hm-ingredients .hm-ing-select'));
+  renderHomemadeRef();
 });
 </script>
 </body>
